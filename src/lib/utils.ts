@@ -38,6 +38,8 @@ export function getCategoryColor(category: string): string {
     case 'auth': return '#8B5CF6'
     case 'storage': return '#FBBF24'
     case 'realtime': return '#4ADE80'
+    case 'monitoring': return '#F97316'
+    case 'operations': return '#06B6D4'
     default: return '#64748B'
   }
 }

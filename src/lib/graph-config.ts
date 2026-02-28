@@ -27,6 +27,13 @@ export const NODE_POSITIONS: Record<string, { x: number; y: number }> = {
   'supabase-meta':     { x: 800, y: 600 },
   'supabase-imgproxy': { x: 1100, y: 600 },
   'langfuse-db':       { x: 400, y: 600 },
+  'neo4j':             { x: 200, y: 600 },
+
+  // Layer 5 — Operations & Monitoring (right side)
+  'ntfy':              { x: -100, y: 150 },
+  'netbox':            { x: -100, y: 300 },
+  'taskyn':            { x: -100, y: 450 },
+  'netdata':           { x: -100, y: 0 },
 }
 
 // 24 connections between services
@@ -68,6 +75,14 @@ export const EDGE_DEFINITIONS: Omit<DataFlow, 'id'>[] = [
 
   // Langfuse → own DB
   { source: 'langfuse', target: 'langfuse-db', label: 'Trace data', protocol: 'pg', animated: true },
+
+  // Operations & Monitoring
+  { source: 'traefik', target: 'netbox', label: 'CMDB UI', protocol: 'https', animated: false },
+  { source: 'traefik', target: 'taskyn', label: 'PM UI', protocol: 'https', animated: false },
+  { source: 'netbox', target: 'supabase-db', label: 'Inventory', protocol: 'pg', animated: false },
+  { source: 'taskyn', target: 'supabase-db', label: 'Tasks data', protocol: 'pg', animated: false },
+  { source: 'neo4j', target: 'supabase-db', label: 'Graph sync', protocol: 'pg', animated: false },
+  { source: 'ntfy', target: 'netdata', label: 'Alert source', protocol: 'http', animated: false },
 ]
 
 export const EDGES: DataFlow[] = EDGE_DEFINITIONS.map((e, i) => ({

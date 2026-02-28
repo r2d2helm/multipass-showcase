@@ -1,6 +1,6 @@
 export type ServiceStatus = 'healthy' | 'degraded' | 'down' | 'unknown'
 
-export type ServiceCategory = 'gateway' | 'application' | 'database' | 'cache' | 'ai' | 'observability' | 'auth' | 'storage' | 'realtime'
+export type ServiceCategory = 'gateway' | 'application' | 'database' | 'cache' | 'ai' | 'observability' | 'auth' | 'storage' | 'realtime' | 'monitoring' | 'operations'
 
 export interface ServiceMetrics {
   id: string
