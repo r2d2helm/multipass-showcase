@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --deep-ocean: #0A1628;
+    --deep-ocean-light: #1a2744;
+    --electric-cyan: #00D4FF;
+    --neon-purple: #8B5CF6;
+    --coral-energy: #FF6B6B;
+    --cloud-white: #F8FAFC;
+    --steel-gray: #64748B;
+    --success-green: #4ADE80;
+    --amber-warm: #FBBF24;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+
+    --background: 222 47% 10%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
+    --primary: 192 100% 50%;
+    --primary-foreground: 222 47% 10%;
+    --secondary: 222 30% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 30% 20%;
+    --muted-foreground: 215 20% 50%;
+    --accent: 263 86% 65%;
+    --accent-foreground: 210 40% 98%;
+    --border: 222 30% 20%;
+    --input: 222 30% 20%;
+    --ring: 192 100% 50%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-deep-ocean text-cloud-white font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 1rem;
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--electric-cyan), var(--neon-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* React Flow overrides */
+.react-flow__background {
+  background-color: #0A1628 !important;
+}
+
+.react-flow__minimap {
+  background-color: #1a2744 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.75rem !important;
+}
+
+.react-flow__controls {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background-color: #1a2744 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  fill: #F8FAFC !important;
+}
+
+.react-flow__controls-button:hover {
+  background-color: rgba(0, 212, 255, 0.15) !important;
+}
