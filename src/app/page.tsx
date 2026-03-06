@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Server, Layers, Brain, Workflow, ShieldCheck, Lock, ShieldAlert, BookOpen, Users, Crown, Clock, Rocket, Briefcase, Mic, HardDrive, ArrowRight, User, Bot, Cpu, Box } from 'lucide-react'
+import { Server, Layers, Brain, Workflow, ShieldCheck, Lock, ShieldAlert, BookOpen, Users, Crown, Clock, Rocket, Briefcase, Mic, HardDrive, BarChart3, Radio, ArrowRight, User, Bot, Cpu, Box } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/studio/fade-in'
 import { AnimatedCounter } from '@/components/studio/animated-counter'
 import { useLocale } from '@/lib/i18n'
@@ -33,6 +33,8 @@ const PAGES = [
   { href: '/portfolio', labelKey: 'nav.portfolio', icon: Briefcase, color: '#F472B6', descKey: 'landing.desc.portfolio' },
   { href: '/voice', labelKey: 'nav.voice', icon: Mic, color: '#8B5CF6', descKey: 'landing.desc.voice' },
   { href: '/hardware', labelKey: 'nav.hardware', icon: HardDrive, color: '#00D4FF', descKey: 'landing.desc.hardware' },
+  { href: '/charts', labelKey: 'nav.charts', icon: BarChart3, color: '#4ADE80', descKey: 'landing.desc.charts' },
+  { href: '/remote', labelKey: 'nav.remote', icon: Radio, color: '#FF6B6B', descKey: 'landing.desc.remote' },
 ]
 
 export default function HomePage() {
@@ -41,64 +43,57 @@ export default function HomePage() {
   return (
     <div className="flex h-full flex-col overflow-auto">
       {/* Hero */}
-      <div className="relative px-6 py-12 lg:py-16 text-center overflow-hidden">
+      <div className="relative px-6 py-6 lg:py-8 text-center">
         {/* Gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--cyan-tint-light)] via-transparent to-transparent" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,var(--purple-glow)_0%,transparent_70%)]" />
 
-        <FadeIn>
-          <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--purple-tint)] border border-[var(--purple-border)] mb-6">
-              <span className="w-2 h-2 rounded-full bg-success-green animate-pulse" />
-              <span className="text-sm text-neon-purple font-medium">{t('landing.badge')}</span>
-            </div>
-
-            <div className="flex items-center justify-center gap-4 mb-3 flex-wrap">
-              <h1 className="text-4xl lg:text-5xl font-heading font-bold text-cloud-white">
-                MultiPass <span className="gradient-text">Studio</span>
-              </h1>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--green-tint)] border border-success-green/30 text-success-green text-sm font-bold">
-                <span className="text-lg font-heading">100/100</span> Production Ready
-              </span>
-            </div>
-            <p className="text-lg text-steel-gray max-w-xl mx-auto mb-8">
-              {t('landing.subtitle')}
-            </p>
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--purple-tint)] border border-[var(--purple-border)] mb-3">
+            <span className="w-2 h-2 rounded-full bg-success-green animate-pulse" />
+            <span className="text-sm text-neon-purple font-medium">{t('landing.badge')}</span>
           </div>
-        </FadeIn>
+
+          <div className="flex items-center justify-center gap-4 mb-3 flex-wrap">
+            <h1 className="text-4xl lg:text-5xl font-heading font-bold text-cloud-white">
+              MultiPass <span className="gradient-text">Studio</span>
+            </h1>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--green-tint)] border border-success-green/30 text-success-green text-sm font-bold">
+              <span className="text-lg font-heading">100/100</span> Production Ready
+            </span>
+          </div>
+          <p className="text-base text-steel-gray max-w-3xl mx-auto mb-4">
+            {t('landing.subtitle')}
+          </p>
+        </div>
 
         {/* Animated stats */}
-        <FadeIn delay={0.2}>
-          <div className="relative z-10 grid grid-cols-4 lg:grid-cols-8 gap-3 max-w-4xl mx-auto mb-8">
-            {HERO_STATS.map(s => (
-              <div key={s.label} className="glass-card p-3 text-center">
-                <AnimatedCounter
-                  value={s.value}
-                  suffix={s.suffix}
-                  className="text-xl lg:text-2xl font-heading font-bold text-cloud-white"
-                />
-                <p className="text-[11px] lg:text-xs text-steel-gray mt-0.5">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
+        <div className="relative z-10 grid grid-cols-4 lg:grid-cols-8 gap-2 max-w-4xl mx-auto mb-4">
+          {HERO_STATS.map(s => (
+            <div key={s.label} className="glass-card p-2 text-center">
+              <AnimatedCounter
+                value={s.value}
+                suffix={s.suffix}
+                className="text-xl lg:text-2xl font-heading font-bold text-cloud-white"
+              />
+              <p className="text-[11px] lg:text-xs text-steel-gray mt-0.5">{s.label}</p>
+            </div>
+          ))}
+        </div>
 
         {/* Signature */}
-        <FadeIn delay={0.35}>
-          <div className="relative z-10 flex items-center justify-center gap-3 text-sm text-steel-gray">
-            <span className="text-xl">👨‍💻</span>
-            <span>Mike</span>
-            <span className="text-[var(--dim-text)]">+</span>
-            <span className="text-xl">🤖</span>
-            <span>R2D2</span>
-            <span className="text-[var(--dim-text)]">|</span>
-            <span>Dell R740 / Proxmox 9 / Ubuntu 24.04</span>
-          </div>
-        </FadeIn>
+        <div className="relative z-10 flex items-center justify-center gap-3 text-sm text-steel-gray">
+          <span className="text-xl">👨‍💻</span>
+          <span>Mike</span>
+          <span className="text-[var(--dim-text)]">+</span>
+          <span className="text-xl">🤖</span>
+          <span>R2D2</span>
+          <span className="text-[var(--dim-text)]">|</span>
+          <span>Dell R740 / Proxmox 9 / Ubuntu 24.04</span>
+        </div>
 
         {/* Team Manifesto */}
-        <FadeIn delay={0.45}>
-          <div className="relative z-10 max-w-3xl mx-auto mt-6">
+        <div className="relative z-10 max-w-3xl mx-auto mt-3">
             <div className="flex items-center justify-center gap-2 flex-wrap mb-3">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--cyan-tint)] border border-electric-cyan/20 text-sm font-bold text-electric-cyan">
                 <User className="w-3.5 h-3.5" /> 1 Human
@@ -124,7 +119,6 @@ export default function HomePage() {
               <span className="text-lg font-heading font-semibold text-success-green">{t('manifesto.pre')}</span> <span className="text-xl font-heading font-bold text-electric-cyan">{t('manifesto.human')}</span>, <span className="text-lg font-heading font-semibold text-neon-purple">{t('manifesto.ai')}</span>, <span className="text-lg font-heading font-semibold text-amber-warm">{t('manifesto.agents')}</span>.
             </p>
           </div>
-        </FadeIn>
       </div>
 
       {/* Pages grid */}

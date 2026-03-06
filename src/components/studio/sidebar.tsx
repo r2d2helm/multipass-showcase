@@ -18,6 +18,8 @@ import {
   Briefcase,
   Mic,
   HardDrive,
+  BarChart3,
+  Radio,
   Sun,
   Moon,
 } from 'lucide-react'
@@ -40,6 +42,8 @@ const NAV_ITEMS = [
   { href: '/portfolio', labelKey: 'nav.portfolio', icon: Briefcase, descKey: 'nav.portfolio.desc' },
   { href: '/voice', labelKey: 'nav.voice', icon: Mic, descKey: 'nav.voice.desc' },
   { href: '/hardware', labelKey: 'nav.hardware', icon: HardDrive, descKey: 'nav.hardware.desc' },
+  { href: '/charts', labelKey: 'nav.charts', icon: BarChart3, descKey: 'nav.charts.desc' },
+  { href: '/remote', labelKey: 'nav.remote', icon: Radio, descKey: 'nav.remote.desc' },
 ]
 
 const LOCALES: Locale[] = ['fr', 'en', 'nl']
@@ -63,24 +67,24 @@ export function Sidebar() {
       </Link>
 
       {/* Nav */}
-      <nav className="flex-1 py-3 space-y-1 px-2 overflow-y-auto">
+      <nav className="flex-1 py-1 space-y-0.5 px-2 overflow-y-auto">
         {NAV_ITEMS.map(({ href, labelKey, icon: Icon, descKey }) => {
           const isActive = pathname === href
           return (
             <Link
               key={href}
               href={href}
-              className={`flex items-center gap-3 px-2 lg:px-3 py-2.5 rounded-lg transition-all duration-200 group ${
+              className={`flex items-center gap-2.5 px-2 lg:px-3 py-1.5 rounded-lg transition-all duration-200 group ${
                 isActive
                   ? 'bg-[var(--cyan-tint)] text-electric-cyan'
                   : 'text-steel-gray hover:text-cloud-white'
               }`}
               style={!isActive ? { } : {}}
             >
-              <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-electric-cyan' : 'text-steel-gray group-hover:text-cloud-white'}`} />
-              <div className="hidden lg:block">
-                <span className="text-lg font-medium">{t(labelKey)}</span>
-                <p className={`text-sm ${isActive ? 'text-electric-cyan/60' : 'text-steel-gray'}`}>{t(descKey)}</p>
+              <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-electric-cyan' : 'text-steel-gray group-hover:text-cloud-white'}`} />
+              <div className="hidden lg:block min-w-0">
+                <span className="text-sm font-medium leading-tight">{t(labelKey)}</span>
+                <p className={`text-xs leading-tight truncate ${isActive ? 'text-electric-cyan/60' : 'text-steel-gray'}`}>{t(descKey)}</p>
               </div>
             </Link>
           )
