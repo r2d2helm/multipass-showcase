@@ -234,8 +234,8 @@ export default function LearnPage() {
         </div>
 
         {/* Compound effect statement */}
-        <p className="text-center text-sm text-steel-gray max-w-xl mx-auto">
-          <span className="text-amber-warm font-semibold">{t('learn.compound.pre')}</span> {t('learn.compound.post')}
+        <p className="text-center text-base lg:text-lg text-steel-gray max-w-2xl mx-auto leading-relaxed">
+          <span className="text-amber-warm font-bold">{t('learn.compound.pre')}</span> {t('learn.compound.post')}
         </p>
       </div>
 
