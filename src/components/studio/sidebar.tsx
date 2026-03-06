@@ -20,6 +20,7 @@ import {
   HardDrive,
   BarChart3,
   Radio,
+  GraduationCap,
   Sun,
   Moon,
 } from 'lucide-react'
@@ -44,6 +45,7 @@ const NAV_ITEMS = [
   { href: '/hardware', labelKey: 'nav.hardware', icon: HardDrive, descKey: 'nav.hardware.desc' },
   { href: '/charts', labelKey: 'nav.charts', icon: BarChart3, descKey: 'nav.charts.desc' },
   { href: '/remote', labelKey: 'nav.remote', icon: Radio, descKey: 'nav.remote.desc' },
+  { href: '/learn', labelKey: 'nav.learn', icon: GraduationCap, descKey: 'nav.learn.desc' },
 ]
 
 const LOCALES: Locale[] = ['fr', 'en', 'nl']

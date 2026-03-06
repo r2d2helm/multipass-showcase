@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Server, Layers, Brain, Workflow, ShieldCheck, Lock, ShieldAlert, BookOpen, Users, Crown, Clock, Rocket, Briefcase, Mic, HardDrive, BarChart3, Radio, ArrowRight, User, Bot, Cpu, Box } from 'lucide-react'
+import { Server, Layers, Brain, Workflow, ShieldCheck, Lock, ShieldAlert, BookOpen, Users, Crown, Clock, Rocket, Briefcase, Mic, HardDrive, BarChart3, Radio, GraduationCap, ArrowRight, User, Bot, Cpu, Box } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/studio/fade-in'
 import { AnimatedCounter } from '@/components/studio/animated-counter'
 import { useLocale } from '@/lib/i18n'
@@ -35,6 +35,7 @@ const PAGES = [
   { href: '/hardware', labelKey: 'nav.hardware', icon: HardDrive, color: '#00D4FF', descKey: 'landing.desc.hardware' },
   { href: '/charts', labelKey: 'nav.charts', icon: BarChart3, color: '#4ADE80', descKey: 'landing.desc.charts' },
   { href: '/remote', labelKey: 'nav.remote', icon: Radio, color: '#FF6B6B', descKey: 'landing.desc.remote' },
+  { href: '/learn', labelKey: 'nav.learn', icon: GraduationCap, color: '#FBBF24', descKey: 'landing.desc.learn' },
 ]
 
 export default function HomePage() {
