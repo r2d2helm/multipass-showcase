@@ -6,12 +6,20 @@ export interface AlgorithmPhase {
   color: string
 }
 
+export interface SubAgentDef {
+  id: string
+  name: string
+  type: string
+  description: string
+}
+
 export interface AgentDef {
   id: string
   name: string
   team: string
   role: string
   description: string
+  subagents?: SubAgentDef[]
 }
 
 export interface SkillDef {
@@ -43,21 +51,115 @@ export const ALGORITHM_PHASES: AlgorithmPhase[] = [
 
 export const AGENTS: AgentDef[] = [
   // Governance
-  { id: 'orchestrator', name: 'Orchestrator', team: 'Governance', role: 'Lead', description: 'Dispatches tasks, coordinates teams' },
-  { id: 'quality', name: 'Quality Gate', team: 'Governance', role: 'Validator', description: '3-level validation (structure, functional, integration)' },
-  { id: 'router', name: 'Router Updater', team: 'Governance', role: 'Router', description: 'Updates meta-router and CLAUDE.md' },
-  { id: 'knowledge-idx', name: 'Knowledge Indexer', team: 'Governance', role: 'Indexer', description: 'Indexes to vault Obsidian, updates MOCs' },
+  {
+    id: 'orchestrator', name: 'Orchestrator', team: 'Governance', role: 'Lead',
+    description: 'Dispatches tasks, coordinates teams',
+    subagents: [
+      { id: 'orch-algorithm', name: 'Algorithm Agent', type: 'Algorithm', description: 'ISC-specialized, runs full 7-phase loop on delegated criteria' },
+      { id: 'orch-loop', name: 'Loop Worker', type: 'Worker', description: 'Single-criterion surgical fix agent for parallel loop mode' },
+      { id: 'orch-council', name: 'Council Agent', type: 'Council', description: 'Multi-agent structured debate on decisions' },
+    ],
+  },
+  {
+    id: 'quality', name: 'Quality Gate', team: 'Governance', role: 'Validator',
+    description: '3-level validation (structure, functional, integration)',
+    subagents: [
+      { id: 'qg-structure', name: 'Structure Check', type: 'Static', description: 'Type check, lint, format verification (tsc, ESLint, Biome)' },
+      { id: 'qg-functional', name: 'Functional Check', type: 'Test', description: 'Unit + integration tests (vitest, pytest, 493+ tests)' },
+      { id: 'qg-integration', name: 'Integration Check', type: 'E2E', description: 'E2E Playwright (55 tests) + browser visual verification' },
+    ],
+  },
+  {
+    id: 'router', name: 'Router Updater', team: 'Governance', role: 'Router',
+    description: 'Updates meta-router and CLAUDE.md',
+    subagents: [
+      { id: 'rt-scanner', name: 'Skill Scanner', type: 'Explore', description: 'Scans skill-index.json, detects new/modified skills' },
+    ],
+  },
+  {
+    id: 'knowledge-idx', name: 'Knowledge Indexer', team: 'Governance', role: 'Indexer',
+    description: 'Indexes to vault Obsidian, updates MOCs',
+    subagents: [
+      { id: 'ki-mem0', name: 'Mem0 Indexer', type: 'Worker', description: 'Indexes vault content to Mem0 embeddings (813+ chunks)' },
+      { id: 'ki-neo4j', name: 'Graph Indexer', type: 'Worker', description: 'Updates Neo4j knowledge graph (2390 nodes)' },
+    ],
+  },
   // Production
-  { id: 'skill-builder', name: 'Skill Builder', team: 'Production', role: 'Builder', description: 'Creates skill SKILL.md + commands + wizards' },
-  { id: 'coder', name: 'Engineer', team: 'Production', role: 'Developer', description: 'Implements code, tests, deploys' },
-  { id: 'researcher', name: 'Researcher', team: 'Production', role: 'Explorer', description: 'Multi-model research, web search' },
-  { id: 'architect', name: 'Architect', team: 'Production', role: 'Designer', description: 'System design, decomposition, child PRDs' },
+  {
+    id: 'skill-builder', name: 'Skill Builder', team: 'Production', role: 'Builder',
+    description: 'Creates skill SKILL.md + commands + wizards',
+    subagents: [
+      { id: 'sb-scaffold', name: 'Scaffold Agent', type: 'Engineer', description: 'Generates SKILL.md structure, commands, wizards' },
+      { id: 'sb-validator', name: 'Skill Validator', type: 'Test', description: 'Validates skill triggers, prefix uniqueness, command counts' },
+    ],
+  },
+  {
+    id: 'coder', name: 'Engineer', team: 'Production', role: 'Developer',
+    description: 'Implements code, tests, deploys',
+    subagents: [
+      { id: 'eng-impl', name: 'Implementation Agent', type: 'Engineer', description: 'Writes code, creates files, applies edits' },
+      { id: 'eng-test', name: 'Test Agent', type: 'Test', description: 'Writes and runs unit/integration tests' },
+      { id: 'eng-deploy', name: 'Deploy Agent', type: 'Worker', description: 'Docker build, git push, CI/CD pipeline' },
+      { id: 'eng-browser', name: 'Browser Agent', type: 'Browser', description: 'Visual verification via Playwright screenshots' },
+    ],
+  },
+  {
+    id: 'researcher', name: 'Researcher', team: 'Production', role: 'Explorer',
+    description: 'Multi-model research, web search',
+    subagents: [
+      { id: 'res-web', name: 'Web Researcher', type: 'Research', description: 'WebSearch + WebFetch, parallel multi-query' },
+      { id: 'res-fabric', name: 'Fabric Analyst', type: 'Research', description: '240+ patterns for content extraction and analysis' },
+      { id: 'res-parser', name: 'Content Parser', type: 'Worker', description: 'Parses URLs, PDFs, videos, YouTube transcripts' },
+    ],
+  },
+  {
+    id: 'architect', name: 'Architect', team: 'Production', role: 'Designer',
+    description: 'System design, decomposition, child PRDs',
+    subagents: [
+      { id: 'arch-decomp', name: 'Decomposer', type: 'Architect', description: 'Breaks large tasks into child PRDs by domain' },
+      { id: 'arch-redteam', name: 'Red Team', type: 'RedTeam', description: '32 adversarial agents stress-testing designs' },
+      { id: 'arch-creative', name: 'Creative Agent', type: 'Creative', description: 'Extended thinking, divergent ideation for alternatives' },
+    ],
+  },
   // Warehouse
-  { id: 'wh-researcher', name: 'WH Researcher', team: 'Warehouse', role: 'Collector', description: 'Collects data from web sources' },
-  { id: 'wh-analyst', name: 'WH Analyst', team: 'Warehouse', role: 'Analyzer', description: 'Analyzes and structures data' },
-  { id: 'wh-writer', name: 'WH Writer', team: 'Warehouse', role: 'Writer', description: 'Writes fiches and documentation' },
-  { id: 'wh-qa', name: 'WH QA', team: 'Warehouse', role: 'Validator', description: 'Validates fiche quality and accuracy' },
-  { id: 'wh-publisher', name: 'WH Publisher', team: 'Warehouse', role: 'Publisher', description: 'Publishes to vault and indexes' },
+  {
+    id: 'wh-researcher', name: 'WH Researcher', team: 'Warehouse', role: 'Collector',
+    description: 'Collects data from web sources',
+    subagents: [
+      { id: 'whr-scraper', name: 'Web Scraper', type: 'Research', description: 'BrightData + Apify for structured web scraping' },
+      { id: 'whr-api', name: 'API Collector', type: 'Worker', description: 'Collects from APIs, RSS feeds, GitHub repos' },
+    ],
+  },
+  {
+    id: 'wh-analyst', name: 'WH Analyst', team: 'Warehouse', role: 'Analyzer',
+    description: 'Analyzes and structures data',
+    subagents: [
+      { id: 'wha-extract', name: 'Wisdom Extractor', type: 'Research', description: 'Adaptive content extraction, key insights identification' },
+      { id: 'wha-classify', name: 'Classifier', type: 'Worker', description: 'Categorizes content into 15 fiche categories' },
+    ],
+  },
+  {
+    id: 'wh-writer', name: 'WH Writer', team: 'Warehouse', role: 'Writer',
+    description: 'Writes fiches and documentation',
+    subagents: [
+      { id: 'whw-draft', name: 'Draft Writer', type: 'Engineer', description: 'Writes fiche following vault conventions and templates' },
+    ],
+  },
+  {
+    id: 'wh-qa', name: 'WH QA', team: 'Warehouse', role: 'Validator',
+    description: 'Validates fiche quality and accuracy',
+    subagents: [
+      { id: 'whq-check', name: 'Quality Checker', type: 'Test', description: 'Validates formatting, links, sources, accuracy' },
+    ],
+  },
+  {
+    id: 'wh-publisher', name: 'WH Publisher', team: 'Warehouse', role: 'Publisher',
+    description: 'Publishes to vault and indexes',
+    subagents: [
+      { id: 'whp-vault', name: 'Vault Publisher', type: 'Worker', description: 'Writes to NFS vault, updates MOC links' },
+      { id: 'whp-index', name: 'Mem0 Indexer', type: 'Worker', description: 'Indexes fiche in Mem0 warehouse user_id' },
+    ],
+  },
 ]
 
 export const SKILLS: SkillDef[] = [

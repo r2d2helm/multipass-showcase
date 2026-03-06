@@ -26,12 +26,12 @@ export default function WarehousePage() {
       {/* Header */}
       <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
         <div className="flex items-center gap-3">
-          <h2 className="text-sm font-heading font-semibold text-cloud-white">Warehouse</h2>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[rgba(74,222,128,0.1)] text-success-green">
+          <h2 className="text-lg font-heading font-semibold text-cloud-white">Warehouse</h2>
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(74,222,128,0.1)] text-success-green">
             {WAREHOUSE_STATS.totalFiches} fiches
           </span>
         </div>
-        <div className="flex items-center gap-4 text-[11px] text-steel-gray">
+        <div className="flex items-center gap-4 text-sm text-steel-gray">
           <span>{WAREHOUSE_STATS.categories} categories</span>
           <span>{WAREHOUSE_STATS.avgSources} sources/fiche avg</span>
           <span>{WAREHOUSE_AGENTS.length} agents pipeline</span>
@@ -49,7 +49,7 @@ export default function WarehousePage() {
             <button
               key={v.id}
               onClick={() => setView(v.id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-base transition-all ${
                 view === v.id
                   ? 'bg-[rgba(74,222,128,0.15)] text-success-green'
                   : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
@@ -58,7 +58,7 @@ export default function WarehousePage() {
               <Icon className="w-3.5 h-3.5" />
               <span>{v.label}</span>
               {v.count && (
-                <span className="text-[9px] px-1 py-0.5 rounded bg-[rgba(255,255,255,0.06)]">{v.count}</span>
+                <span className="text-sm px-1 py-0.5 rounded bg-[rgba(255,255,255,0.09)]">{v.count}</span>
               )}
             </button>
           )
@@ -73,30 +73,30 @@ export default function WarehousePage() {
             <div className="glass-card p-4">
               <div className="flex items-center gap-2 mb-4">
                 <Package className="w-4 h-4 text-success-green" />
-                <h3 className="text-sm font-heading font-semibold text-cloud-white">5-Agent Pipeline</h3>
+                <h3 className="text-lg font-heading font-semibold text-cloud-white">5-Agent Pipeline</h3>
               </div>
 
               <div className="space-y-3">
                 {WAREHOUSE_AGENTS.map((agent, i) => (
                   <div key={agent.id} className="flex items-start gap-3">
                     <div className="flex flex-col items-center">
-                      <div className="w-8 h-8 rounded-lg bg-[rgba(74,222,128,0.1)] flex items-center justify-center text-success-green text-xs font-bold">
+                      <div className="w-8 h-8 rounded-lg bg-[rgba(74,222,128,0.1)] flex items-center justify-center text-success-green text-base font-bold">
                         {agent.step}
                       </div>
                       {i < WAREHOUSE_AGENTS.length - 1 && (
                         <div className="w-px h-6 bg-[rgba(74,222,128,0.2)] my-1" />
                       )}
                     </div>
-                    <div className="flex-1 p-3 rounded-lg bg-[rgba(255,255,255,0.02)]">
+                    <div className="flex-1 p-3 rounded-lg bg-[rgba(255,255,255,0.05)]">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs font-medium text-cloud-white">{agent.name}</span>
-                        <span className="text-[9px] px-1.5 py-0.5 rounded bg-[rgba(74,222,128,0.1)] text-success-green">
+                        <span className="text-base font-medium text-cloud-white">{agent.name}</span>
+                        <span className="text-sm px-1.5 py-0.5 rounded bg-[rgba(74,222,128,0.1)] text-success-green">
                           {agent.role}
                         </span>
-                        <ArrowRight className="w-3 h-3 text-steel-gray/30 ml-auto" />
-                        <span className="text-[10px] text-steel-gray">{agent.output}</span>
+                        <ArrowRight className="w-3 h-3 text-steel-gray/50 ml-auto" />
+                        <span className="text-sm text-steel-gray">{agent.output}</span>
                       </div>
-                      <p className="text-[10px] text-steel-gray">{agent.description}</p>
+                      <p className="text-sm text-steel-gray">{agent.description}</p>
                     </div>
                   </div>
                 ))}
@@ -107,19 +107,19 @@ export default function WarehousePage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div className="glass-card p-3 text-center">
                 <span className="text-2xl font-heading font-bold text-cloud-white">{WAREHOUSE_STATS.totalFiches}</span>
-                <p className="text-[10px] text-steel-gray mt-1">Fiches Total</p>
+                <p className="text-sm text-steel-gray mt-1">Fiches Total</p>
               </div>
               <div className="glass-card p-3 text-center">
                 <span className="text-2xl font-heading font-bold text-cloud-white">{WAREHOUSE_STATS.categories}</span>
-                <p className="text-[10px] text-steel-gray mt-1">Categories</p>
+                <p className="text-sm text-steel-gray mt-1">Categories</p>
               </div>
               <div className="glass-card p-3 text-center">
                 <span className="text-2xl font-heading font-bold text-cloud-white">{WAREHOUSE_STATS.avgSources}</span>
-                <p className="text-[10px] text-steel-gray mt-1">Sources/Fiche</p>
+                <p className="text-sm text-steel-gray mt-1">Sources/Fiche</p>
               </div>
               <div className="glass-card p-3 text-center">
                 <span className="text-2xl font-heading font-bold text-cloud-white">{WAREHOUSE_AGENTS.length}</span>
-                <p className="text-[10px] text-steel-gray mt-1">Pipeline Agents</p>
+                <p className="text-sm text-steel-gray mt-1">Pipeline Agents</p>
               </div>
             </div>
           </>
@@ -132,7 +132,7 @@ export default function WarehousePage() {
             <div className="flex flex-wrap gap-1.5">
               <button
                 onClick={() => setSelectedCategory(null)}
-                className={`text-[10px] px-2 py-1 rounded-lg transition-all ${
+                className={`text-sm px-2 py-1 rounded-lg transition-all ${
                   !selectedCategory
                     ? 'bg-[rgba(255,255,255,0.1)] text-cloud-white'
                     : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
@@ -146,7 +146,7 @@ export default function WarehousePage() {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(prev => prev === cat ? null : cat)}
-                    className={`flex items-center gap-1 text-[10px] px-2 py-1 rounded-lg transition-all ${
+                    className={`flex items-center gap-1 text-sm px-2 py-1 rounded-lg transition-all ${
                       selectedCategory === cat
                         ? 'bg-[rgba(255,255,255,0.1)] text-cloud-white'
                         : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
@@ -168,9 +168,9 @@ export default function WarehousePage() {
                 <div key={fiche.id} className="glass-card p-3">
                   <div className="flex items-start gap-2 mb-2">
                     <FileText className="w-3.5 h-3.5 text-steel-gray shrink-0 mt-0.5" />
-                    <span className="text-xs text-cloud-white font-medium leading-tight">{fiche.title}</span>
+                    <span className="text-base text-cloud-white font-medium leading-tight">{fiche.title}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-[10px]">
+                  <div className="flex items-center gap-2 text-xs">
                     <span
                       className="px-1.5 py-0.5 rounded"
                       style={{
@@ -184,7 +184,7 @@ export default function WarehousePage() {
                     <span className={`ml-auto font-medium ${qualityColor(fiche.quality)}`}>
                       {fiche.quality}
                     </span>
-                    <span className="text-steel-gray/50">{fiche.date}</span>
+                    <span className="text-steel-gray">{fiche.date}</span>
                   </div>
                 </div>
               ))}

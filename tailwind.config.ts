@@ -12,7 +12,7 @@ const config: Config = {
         'neon-purple': '#8B5CF6',
         'coral-energy': '#FF6B6B',
         'cloud-white': '#F8FAFC',
-        'steel-gray': '#64748B',
+        'steel-gray': '#B0BEC5',
         'success-green': '#4ADE80',
         'amber-warm': '#FBBF24',
         border: 'hsl(var(--border))',

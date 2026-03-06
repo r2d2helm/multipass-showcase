@@ -28,18 +28,18 @@ export function CronTimeline({ jobs }: CronTimelineProps) {
     <div className="glass-card p-4">
       <div className="flex items-center gap-2 mb-4">
         <Clock className="w-4 h-4 text-electric-cyan" />
-        <h3 className="text-sm font-heading font-semibold text-cloud-white">Cron Orchestra</h3>
-        <span className="text-[10px] text-steel-gray ml-auto">{jobs.length} jobs</span>
+        <h3 className="text-lg font-heading font-semibold text-cloud-white">Cron Orchestra</h3>
+        <span className="text-sm text-steel-gray ml-auto">{jobs.length} jobs</span>
       </div>
 
       {/* 24h timeline */}
       <div className="relative mb-4">
-        <div className="flex justify-between text-[9px] text-steel-gray/50 mb-1">
+        <div className="flex justify-between text-sm text-steel-gray mb-1">
           {[0, 3, 6, 9, 12, 15, 18, 21].map(h => (
             <span key={h}>{h.toString().padStart(2, '0')}h</span>
           ))}
         </div>
-        <div className="h-8 bg-[rgba(255,255,255,0.03)] rounded-lg relative overflow-hidden">
+        <div className="h-8 bg-[rgba(255,255,255,0.09)] rounded-lg relative overflow-hidden">
           {jobs.map((job, i) => {
             const hour = parseScheduleToHour(job.schedule)
             if (hour === null) return null
@@ -76,9 +76,9 @@ export function CronTimeline({ jobs }: CronTimelineProps) {
           return (
             <div key={i} className="flex items-center gap-2 py-1">
               <Icon className={`w-3 h-3 shrink-0 ${config.color}`} />
-              <code className="text-[10px] text-steel-gray font-mono w-24 shrink-0">{job.schedule}</code>
-              <span className="text-xs text-cloud-white truncate">{job.label}</span>
-              <span className="text-[10px] text-steel-gray ml-auto truncate max-w-32 hidden sm:block">{job.description}</span>
+              <code className="text-sm text-steel-gray font-mono w-24 shrink-0">{job.schedule}</code>
+              <span className="text-base text-cloud-white truncate">{job.label}</span>
+              <span className="text-sm text-steel-gray ml-auto truncate max-w-32 hidden sm:block">{job.description}</span>
             </div>
           )
         })}
@@ -91,7 +91,7 @@ export function CronTimeline({ jobs }: CronTimelineProps) {
           return (
             <div key={key} className="flex items-center gap-1">
               <Icon className={`w-3 h-3 ${config.color}`} />
-              <span className="text-[10px] text-steel-gray capitalize">{key}</span>
+              <span className="text-sm text-steel-gray capitalize">{key}</span>
             </div>
           )
         })}

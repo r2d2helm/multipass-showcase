@@ -121,8 +121,8 @@ export const VMS: VMDefinition[] = [
     diskUsage: 35,
     status: 'up',
     sshUser: 'root',
-    services: ['Proxmox VE 8', 'API REST', 'Storage ZFS'],
-    description: 'Dell R740 — hyperviseur Proxmox VE 8, héberge toutes les VMs, stockage ZFS, API de gestion.',
+    services: ['Proxmox VE 9', 'API REST', 'Storage ZFS'],
+    description: 'Dell R740 — hyperviseur Proxmox VE 9, héberge toutes les VMs, stockage ZFS, API de gestion.',
   },
 ]
 

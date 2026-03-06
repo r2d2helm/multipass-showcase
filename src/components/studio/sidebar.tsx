@@ -8,14 +8,22 @@ import {
   Brain,
   ShieldCheck,
   BookOpen,
+  Workflow,
+  ShieldAlert,
+  Lock,
+  Users,
 } from 'lucide-react'
 
 const NAV_ITEMS = [
   { href: '/infra', label: 'Infrastructure', icon: Server, description: 'VMs & Network' },
   { href: '/stack', label: 'Stack', icon: Layers, description: 'Services & Flows' },
   { href: '/brain', label: 'Brain', icon: Brain, description: 'PAI & Agents' },
+  { href: '/flows', label: 'Flows', icon: Workflow, description: 'Interactions live' },
   { href: '/monitoring', label: 'Monitoring', icon: ShieldCheck, description: 'Alerts & Backup' },
+  { href: '/security', label: 'Security', icon: Lock, description: 'Defense & Threats' },
+  { href: '/supervisor', label: 'MegaSupervisor', icon: ShieldAlert, description: 'Recovery & Rebuild' },
   { href: '/warehouse', label: 'Warehouse', icon: BookOpen, description: 'Knowledge Base' },
+  { href: '/team', label: 'Team', icon: Users, description: "L'Equipe" },
 ]
 
 export function Sidebar() {
@@ -26,11 +34,11 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex items-center gap-3 px-3 lg:px-4 py-4 border-b border-[rgba(255,255,255,0.06)]">
         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-electric-cyan to-neon-purple flex items-center justify-center shrink-0">
-          <span className="text-xs font-bold text-white">MP</span>
+          <span className="text-base font-bold text-white">MP</span>
         </div>
         <div className="hidden lg:block">
-          <h1 className="text-sm font-heading font-bold gradient-text">MultiPass</h1>
-          <p className="text-[10px] text-steel-gray">Studio</p>
+          <h1 className="text-lg font-heading font-bold gradient-text">MultiPass</h1>
+          <p className="text-sm text-steel-gray">Studio</p>
         </div>
       </div>
 
@@ -50,8 +58,8 @@ export function Sidebar() {
             >
               <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-electric-cyan' : 'text-steel-gray group-hover:text-cloud-white'}`} />
               <div className="hidden lg:block">
-                <span className="text-sm font-medium">{label}</span>
-                <p className={`text-[10px] ${isActive ? 'text-electric-cyan/60' : 'text-steel-gray/60'}`}>{description}</p>
+                <span className="text-lg font-medium">{label}</span>
+                <p className={`text-sm ${isActive ? 'text-electric-cyan/60' : 'text-steel-gray'}`}>{description}</p>
               </div>
             </Link>
           )
@@ -61,8 +69,8 @@ export function Sidebar() {
       {/* Footer */}
       <div className="px-3 lg:px-4 py-3 border-t border-[rgba(255,255,255,0.06)]">
         <div className="hidden lg:block">
-          <p className="text-[10px] text-steel-gray">v2.5.0 — AdminSystem</p>
-          <p className="text-[10px] text-steel-gray/50">Dell R740 / Proxmox 8</p>
+          <p className="text-sm text-steel-gray">v2.5.0 — AdminSystem</p>
+          <p className="text-sm text-steel-gray">Dell R740 / Proxmox 9</p>
         </div>
       </div>
     </aside>
