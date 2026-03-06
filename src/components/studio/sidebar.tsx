@@ -12,6 +12,8 @@ import {
   ShieldAlert,
   Lock,
   Users,
+  Crown,
+  Clock,
 } from 'lucide-react'
 
 const NAV_ITEMS = [
@@ -24,6 +26,8 @@ const NAV_ITEMS = [
   { href: '/supervisor', label: 'MegaSupervisor', icon: ShieldAlert, description: 'Recovery & Rebuild' },
   { href: '/warehouse', label: 'Warehouse', icon: BookOpen, description: 'Knowledge Base' },
   { href: '/team', label: 'Team', icon: Users, description: "L'Equipe" },
+  { href: '/franchise', label: 'Franchise', icon: Crown, description: 'Pack Commercial' },
+  { href: '/timeline', label: 'Timeline', icon: Clock, description: 'How We Built This' },
 ]
 
 export function Sidebar() {
@@ -32,7 +36,7 @@ export function Sidebar() {
   return (
     <aside className="flex flex-col w-16 lg:w-56 shrink-0 border-r border-[rgba(255,255,255,0.06)] bg-[rgba(10,22,40,0.6)]">
       {/* Logo */}
-      <div className="flex items-center gap-3 px-3 lg:px-4 py-4 border-b border-[rgba(255,255,255,0.06)]">
+      <Link href="/" className="flex items-center gap-3 px-3 lg:px-4 py-4 border-b border-[rgba(255,255,255,0.06)] hover:bg-[rgba(255,255,255,0.04)] transition-colors">
         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-electric-cyan to-neon-purple flex items-center justify-center shrink-0">
           <span className="text-base font-bold text-white">MP</span>
         </div>
@@ -40,12 +44,12 @@ export function Sidebar() {
           <h1 className="text-lg font-heading font-bold gradient-text">MultiPass</h1>
           <p className="text-sm text-steel-gray">Studio</p>
         </div>
-      </div>
+      </Link>
 
       {/* Nav */}
       <nav className="flex-1 py-3 space-y-1 px-2">
         {NAV_ITEMS.map(({ href, label, icon: Icon, description }) => {
-          const isActive = pathname === href || (href === '/stack' && pathname === '/')
+          const isActive = pathname === href
           return (
             <Link
               key={href}

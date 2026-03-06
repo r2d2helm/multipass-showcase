@@ -50,6 +50,11 @@ export default function RootLayout({
           <main className="flex-1 overflow-hidden">
             {children}
           </main>
+          <div className="fixed bottom-4 right-6 pointer-events-none select-none z-[9999] bg-[rgba(10,22,40,0.75)] px-4 py-2 rounded-lg backdrop-blur-sm border border-[rgba(139,92,246,0.3)]">
+            <p className="text-xs font-mono tracking-wider text-neon-purple leading-tight">
+              COPYRIGHT &copy; MultiPass Agency — Ecosystem Protege Par Brevet
+            </p>
+          </div>
         </div>
       </body>
     </html>
