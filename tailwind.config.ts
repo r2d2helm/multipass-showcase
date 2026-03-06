@@ -7,14 +7,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'deep-ocean': { DEFAULT: '#0A1628', light: '#1a2744' },
-        'electric-cyan': '#00D4FF',
-        'neon-purple': '#8B5CF6',
-        'coral-energy': '#FF6B6B',
-        'cloud-white': '#F8FAFC',
-        'steel-gray': '#B0BEC5',
-        'success-green': '#4ADE80',
-        'amber-warm': '#FBBF24',
+        'deep-ocean': { DEFAULT: 'var(--deep-ocean)', light: 'var(--deep-ocean-light)' },
+        'electric-cyan': 'var(--electric-cyan)',
+        'neon-purple': 'var(--neon-purple)',
+        'coral-energy': 'var(--coral-energy)',
+        'cloud-white': 'var(--cloud-white)',
+        'steel-gray': 'var(--steel-gray)',
+        'success-green': 'var(--success-green)',
+        'amber-warm': 'var(--amber-warm)',
+        'deep-space': 'var(--deep-ocean)',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

@@ -50,7 +50,7 @@ export function ServiceDetailPanel({ service, flows, onClose }: ServiceDetailPan
     <div
       className={`
         absolute right-4 top-4 bottom-4 w-80 z-50 rounded-2xl
-        border border-[rgba(255,255,255,0.1)] bg-[rgba(10,22,40,0.95)]
+        border border-[var(--glass-border)] bg-[var(--overlay-bg)]
         backdrop-blur-xl overflow-hidden flex flex-col
         transition-all duration-300 ease-out
         ${isVisible
@@ -60,7 +60,7 @@ export function ServiceDetailPanel({ service, flows, onClose }: ServiceDetailPan
       `}
     >
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-[rgba(255,255,255,0.08)]">
+      <div className="flex items-center justify-between p-4 border-b border-[var(--subtle-bg-3)]">
         <div className="flex items-center gap-3">
           <div
             className="flex h-10 w-10 items-center justify-center rounded-xl"
@@ -84,7 +84,7 @@ export function ServiceDetailPanel({ service, flows, onClose }: ServiceDetailPan
         </div>
         <button
           onClick={handleClose}
-          className="rounded-lg p-1.5 text-steel-gray hover:text-cloud-white hover:bg-[rgba(255,255,255,0.05)] transition-colors"
+          className="rounded-lg p-1.5 text-steel-gray hover:text-cloud-white hover:bg-[var(--subtle-bg-2)] transition-colors"
         >
           <X className="h-4 w-4" />
         </button>
@@ -149,7 +149,7 @@ export function ServiceDetailPanel({ service, flows, onClose }: ServiceDetailPan
 
 function MetricCard({ label, value, color }: { label: string; value: string; color: string }) {
   return (
-    <div className="rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] p-2.5">
+    <div className="rounded-lg border border-[var(--subtle-bg-2)] bg-[var(--subtle-bg)] p-2.5">
       <span className="text-[10px] text-steel-gray block">{label}</span>
       <span className="text-sm font-semibold" style={{ color }}>{value}</span>
     </div>
@@ -168,7 +168,7 @@ function ConnectionRow({
   direction: 'in' | 'out'
 }) {
   return (
-    <div className="flex items-center gap-2 rounded-md px-2 py-1.5 text-xs bg-[rgba(255,255,255,0.02)] hover:bg-[rgba(255,255,255,0.04)] transition-colors">
+    <div className="flex items-center gap-2 rounded-md px-2 py-1.5 text-xs bg-[var(--subtle-bg)] hover:bg-[var(--subtle-bg)] transition-colors">
       <span className={direction === 'in' ? 'text-success-green' : 'text-electric-cyan'}>
         {direction === 'in' ? '\u2190' : '\u2192'}
       </span>

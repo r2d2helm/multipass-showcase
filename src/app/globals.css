@@ -4,6 +4,59 @@
 
 @layer base {
   :root {
+    --deep-ocean: #F1F5F9;
+    --deep-ocean-light: #E2E8F0;
+    --electric-cyan: #0891B2;
+    --neon-purple: #7C3AED;
+    --coral-energy: #EF4444;
+    --cloud-white: #0F172A;
+    --steel-gray: #64748B;
+    --success-green: #16A34A;
+    --amber-warm: #D97706;
+    --glass-bg: rgba(0, 0, 0, 0.04);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-hover: rgba(0, 0, 0, 0.06);
+    --overlay-bg: rgba(241, 245, 249, 0.85);
+    --ring-color: rgba(124, 58, 237, 0.3);
+    --sidebar-bg: rgba(241, 245, 249, 0.8);
+    --sidebar-border: rgba(0, 0, 0, 0.06);
+    --sidebar-hover: rgba(0, 0, 0, 0.04);
+    --dim-text: rgba(0, 0, 0, 0.5);
+    --subtle-bg: rgba(0, 0, 0, 0.04);
+    --subtle-bg-2: rgba(0, 0, 0, 0.06);
+    --subtle-bg-3: rgba(0, 0, 0, 0.09);
+    --subtle-border: rgba(0, 0, 0, 0.08);
+    --cyan-tint: rgba(8, 145, 178, 0.1);
+    --cyan-tint-light: rgba(8, 145, 178, 0.06);
+    --purple-tint: rgba(124, 58, 237, 0.1);
+    --purple-tint-strong: rgba(124, 58, 237, 0.15);
+    --purple-glow: rgba(124, 58, 237, 0.08);
+    --purple-ring: rgba(124, 58, 237, 0.4);
+    --purple-border: rgba(124, 58, 237, 0.2);
+    --green-tint: rgba(22, 163, 74, 0.1);
+    --coral-tint: rgba(239, 68, 68, 0.1);
+    --amber-tint: rgba(217, 119, 6, 0.1);
+    --copyright-bg: rgba(241, 245, 249, 0.85);
+
+    --background: 210 40% 96%;
+    --foreground: 222 47% 11%;
+    --card: 210 40% 94%;
+    --card-foreground: 222 47% 11%;
+    --primary: 192 82% 37%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 30% 90%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 30% 90%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 263 86% 52%;
+    --accent-foreground: 210 40% 98%;
+    --border: 214 20% 85%;
+    --input: 214 20% 85%;
+    --ring: 192 82% 37%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
     --deep-ocean: #0A1628;
     --deep-ocean-light: #1a2744;
     --electric-cyan: #00D4FF;
@@ -15,6 +68,28 @@
     --amber-warm: #FBBF24;
     --glass-bg: rgba(255, 255, 255, 0.06);
     --glass-border: rgba(255, 255, 255, 0.14);
+    --glass-hover: rgba(255, 255, 255, 0.06);
+    --overlay-bg: rgba(10, 22, 40, 0.75);
+    --ring-color: rgba(139, 92, 246, 0.3);
+    --sidebar-bg: rgba(10, 22, 40, 0.6);
+    --sidebar-border: rgba(255, 255, 255, 0.06);
+    --sidebar-hover: rgba(255, 255, 255, 0.04);
+    --dim-text: rgba(255, 255, 255, 0.2);
+    --subtle-bg: rgba(255, 255, 255, 0.04);
+    --subtle-bg-2: rgba(255, 255, 255, 0.06);
+    --subtle-bg-3: rgba(255, 255, 255, 0.09);
+    --subtle-border: rgba(255, 255, 255, 0.08);
+    --cyan-tint: rgba(0, 212, 255, 0.1);
+    --cyan-tint-light: rgba(0, 212, 255, 0.06);
+    --purple-tint: rgba(139, 92, 246, 0.1);
+    --purple-tint-strong: rgba(139, 92, 246, 0.15);
+    --purple-glow: rgba(139, 92, 246, 0.08);
+    --purple-ring: rgba(139, 92, 246, 0.4);
+    --purple-border: rgba(139, 92, 246, 0.2);
+    --green-tint: rgba(74, 222, 128, 0.1);
+    --coral-tint: rgba(255, 107, 107, 0.1);
+    --amber-tint: rgba(251, 191, 36, 0.1);
+    --copyright-bg: rgba(10, 22, 40, 0.75);
 
     --background: 222 47% 10%;
     --foreground: 210 40% 98%;
@@ -31,7 +106,6 @@
     --border: 222 30% 20%;
     --input: 222 30% 20%;
     --ring: 192 100% 50%;
-    --radius: 0.75rem;
   }
 
   * {
@@ -39,7 +113,9 @@
   }
 
   body {
-    @apply bg-deep-ocean text-cloud-white font-body antialiased;
+    background-color: var(--deep-ocean);
+    color: var(--cloud-white);
+    @apply font-body antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -57,8 +133,8 @@
   }
 
   .glass-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--glass-hover);
+    border-color: var(--glass-border);
   }
 
   .gradient-text {
@@ -67,29 +143,35 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  /* Theme-aware utility classes for inline styles */
+  .theme-text { color: var(--cloud-white); }
+  .theme-muted { color: var(--steel-gray); }
+  .theme-bg { background-color: var(--deep-ocean); }
+  .theme-bg-light { background-color: var(--deep-ocean-light); }
 }
 
 /* React Flow overrides */
 .react-flow__background {
-  background-color: #0A1628 !important;
+  background-color: var(--deep-ocean) !important;
 }
 
 .react-flow__minimap {
-  background-color: #1a2744 !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: var(--deep-ocean-light) !important;
+  border: 1px solid var(--glass-border) !important;
   border-radius: 0.75rem !important;
 }
 
 .react-flow__controls {
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid var(--glass-border) !important;
   border-radius: 0.75rem !important;
   overflow: hidden;
 }
 
 .react-flow__controls-button {
-  background-color: #1a2744 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  fill: #F8FAFC !important;
+  background-color: var(--deep-ocean-light) !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  fill: var(--cloud-white) !important;
 }
 
 .react-flow__controls-button:hover {

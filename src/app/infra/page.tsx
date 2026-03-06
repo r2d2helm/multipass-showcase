@@ -17,10 +17,10 @@ export default function InfraPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)]">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-heading font-semibold text-cloud-white">Infrastructure</h2>
-          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(0,212,255,0.1)] text-electric-cyan">
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[var(--cyan-tint)] text-electric-cyan">
             Dell R740 / Proxmox 9
           </span>
         </div>
@@ -78,7 +78,7 @@ export default function InfraPage() {
                         <div key={l.id} className="flex items-center gap-2 text-base text-steel-gray">
                           <ArrowRight className="w-3 h-3 text-electric-cyan" />
                           <span className="text-cloud-white">{peerVM?.name || peer}</span>
-                          <span className="text-sm px-1 py-0.5 rounded bg-[rgba(255,255,255,0.09)]">{l.protocol}</span>
+                          <span className="text-sm px-1 py-0.5 rounded bg-[var(--subtle-bg-3)]">{l.protocol}</span>
                           <span className="text-xs">{l.label}</span>
                         </div>
                       )
@@ -100,11 +100,11 @@ export default function InfraPage() {
               const src = VMS.find(v => v.id === link.source)
               const tgt = VMS.find(v => v.id === link.target)
               return (
-                <div key={link.id} className="flex items-center gap-2 py-1.5 px-3 rounded-lg bg-[rgba(255,255,255,0.05)]">
+                <div key={link.id} className="flex items-center gap-2 py-1.5 px-3 rounded-lg bg-[var(--subtle-bg-2)]">
                   <span className="text-base text-cloud-white font-medium">{src?.name || link.source}</span>
                   <div className="flex items-center gap-1 flex-1">
                     <div className="flex-1 h-px bg-gradient-to-r from-electric-cyan/40 to-neon-purple/40" />
-                    <span className="text-sm px-1.5 py-0.5 rounded bg-[rgba(0,212,255,0.1)] text-electric-cyan shrink-0">
+                    <span className="text-sm px-1.5 py-0.5 rounded bg-[var(--cyan-tint)] text-electric-cyan shrink-0">
                       {link.protocol}:{link.port || '—'}
                     </span>
                     <div className="flex-1 h-px bg-gradient-to-r from-neon-purple/40 to-electric-cyan/40" />

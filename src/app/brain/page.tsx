@@ -37,10 +37,10 @@ export default function BrainPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)]">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-heading font-semibold text-cloud-white">PAI Brain</h2>
-          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(139,92,246,0.1)] text-neon-purple">
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[var(--purple-tint)] text-neon-purple">
             Algorithm v1.8.0
           </span>
         </div>
@@ -62,14 +62,14 @@ export default function BrainPage() {
               onClick={() => setTab(t.id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-base transition-all ${
                 tab === t.id
-                  ? 'bg-[rgba(139,92,246,0.15)] text-neon-purple'
-                  : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                  ? 'bg-[var(--purple-tint-strong)] text-neon-purple'
+                  : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
               <span>{t.label}</span>
               {t.count && (
-                <span className="text-sm px-1 py-0.5 rounded bg-[rgba(255,255,255,0.09)]">{t.count}</span>
+                <span className="text-sm px-1 py-0.5 rounded bg-[var(--subtle-bg-3)]">{t.count}</span>
               )}
             </button>
           )
@@ -173,14 +173,14 @@ export default function BrainPage() {
                       onClick={() => setSelectedAgent(prev => prev === agent.id ? null : agent.id)}
                       className={`text-left p-3 rounded-lg transition-all ${
                         selectedAgent === agent.id
-                          ? 'bg-[rgba(255,255,255,0.08)] ring-1 ring-[rgba(255,255,255,0.1)]'
-                          : 'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.05)]'
+                          ? 'bg-[var(--subtle-bg-3)] ring-1 ring-[var(--glass-border)]'
+                          : 'bg-[var(--subtle-bg-2)] hover:bg-[var(--subtle-bg-2)]'
                       }`}
                     >
                       <div className="flex items-center gap-2 mb-1">
                         <Users className="w-3 h-3" style={{ color: TEAM_COLORS[team] }} />
                         <span className="text-base font-medium text-cloud-white">{agent.name}</span>
-                        <span className="text-sm px-1.5 py-0.5 rounded bg-[rgba(255,255,255,0.09)] text-steel-gray ml-auto">
+                        <span className="text-sm px-1.5 py-0.5 rounded bg-[var(--subtle-bg-3)] text-steel-gray ml-auto">
                           {agent.role}
                         </span>
                       </div>
@@ -190,15 +190,15 @@ export default function BrainPage() {
                             {agent.description}
                           </p>
                           {agent.subagents && agent.subagents.length > 0 && (
-                            <div className="space-y-1.5 pt-2 border-t border-[rgba(255,255,255,0.08)]">
+                            <div className="space-y-1.5 pt-2 border-t border-[var(--subtle-bg-3)]">
                               <span className="text-sm text-steel-gray font-medium">Subagents ({agent.subagents.length})</span>
                               {agent.subagents.map(sub => (
-                                <div key={sub.id} className="flex items-start gap-2 ml-2 py-1 px-2 rounded bg-[rgba(255,255,255,0.04)]">
+                                <div key={sub.id} className="flex items-start gap-2 ml-2 py-1 px-2 rounded bg-[var(--subtle-bg)]">
                                   <div className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: TEAM_COLORS[team] }} />
                                   <div>
                                     <div className="flex items-center gap-2">
                                       <span className="text-sm text-cloud-white">{sub.name}</span>
-                                      <span className="text-sm px-1.5 py-0.5 rounded bg-[rgba(255,255,255,0.07)]" style={{ color: TEAM_COLORS[team] }}>
+                                      <span className="text-sm px-1.5 py-0.5 rounded bg-[var(--subtle-bg-3)]" style={{ color: TEAM_COLORS[team] }}>
                                         {sub.type}
                                       </span>
                                     </div>
@@ -244,7 +244,7 @@ export default function BrainPage() {
                   onClick={() => setSelectedSkill(prev => prev === skill.id ? null : skill.id)}
                   className={`glass-card p-3 text-left transition-all ${
                     selectedSkill === skill.id
-                      ? 'ring-1 ring-[rgba(255,255,255,0.15)]'
+                      ? 'ring-1 ring-[var(--glass-border)]'
                       : ''
                   }`}
                 >
@@ -285,13 +285,13 @@ export default function BrainPage() {
             </div>
             <div className="space-y-2">
               {HOOKS.map((hook, i) => (
-                <div key={hook.id} className="flex items-center gap-3 py-2 px-3 rounded-lg bg-[rgba(255,255,255,0.05)]">
+                <div key={hook.id} className="flex items-center gap-3 py-2 px-3 rounded-lg bg-[var(--subtle-bg-2)]">
                   <span className="text-sm text-steel-gray font-mono w-5 text-right shrink-0">{i + 1}</span>
                   <div className="w-1.5 h-1.5 rounded-full bg-success-green shrink-0" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-base text-cloud-white font-medium">{hook.name}</span>
-                      <code className="text-sm px-1.5 py-0.5 rounded bg-[rgba(255,107,107,0.1)] text-coral-energy font-mono">
+                      <code className="text-sm px-1.5 py-0.5 rounded bg-[var(--coral-tint)] text-coral-energy font-mono">
                         {hook.event}
                       </code>
                     </div>
@@ -302,16 +302,16 @@ export default function BrainPage() {
             </div>
 
             {/* Hook event flow */}
-            <div className="mt-4 pt-3 border-t border-[rgba(255,255,255,0.06)]">
+            <div className="mt-4 pt-3 border-t border-[var(--subtle-bg-2)]">
               <h4 className="text-sm text-steel-gray uppercase tracking-wide mb-2">Event Flow</h4>
               <div className="flex flex-wrap gap-2">
                 {['SessionStart', 'UserPromptSubmit', 'PreToolUse', 'PostToolUse', 'SubagentStop', 'Stop', 'Notification', 'Cron'].map(event => {
                   const count = HOOKS.filter(h => h.event.startsWith(event) || h.event === event).length
                   return (
-                    <div key={event} className="flex items-center gap-1 px-2 py-1 rounded bg-[rgba(255,255,255,0.09)]">
+                    <div key={event} className="flex items-center gap-1 px-2 py-1 rounded bg-[var(--subtle-bg-3)]">
                       <span className="text-sm text-cloud-white">{event}</span>
                       {count > 0 && (
-                        <span className="text-sm px-1 rounded-full bg-[rgba(255,107,107,0.1)] text-coral-energy">{count}</span>
+                        <span className="text-sm px-1 rounded-full bg-[var(--coral-tint)] text-coral-energy">{count}</span>
                       )}
                     </div>
                   )

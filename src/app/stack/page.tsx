@@ -36,7 +36,7 @@ export default function StackPage() {
     <ErrorBoundary>
       <div className="flex h-full flex-col overflow-hidden">
         {/* Header */}
-        <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)] gap-2">
+        <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)] gap-2">
           <div className="flex items-center gap-3 shrink-0">
             <h2 className="text-sm font-heading font-semibold text-cloud-white">
               Technical Stack

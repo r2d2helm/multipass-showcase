@@ -1,42 +1,74 @@
 'use client'
 
 import { useState } from 'react'
-import { Users, Star, Zap, ExternalLink } from 'lucide-react'
-import { TEAM_MEMBERS, PROJECT_HIGHLIGHTS, TEAM_STATS, TYPE_LABELS, type TeamMember } from '@/lib/team-data'
+import { Users, Star, Zap, ExternalLink, User, Bot, Cpu, Box } from 'lucide-react'
+import { TEAM_STATS, TYPE_LABELS, getTeamMembers, getProjectHighlights } from '@/lib/team-data'
+import { useLocale } from '@/lib/i18n'
 
 type Filter = 'all' | 'human' | 'ai' | 'agent' | 'service'
 
 export default function TeamPage() {
   const [filter, setFilter] = useState<Filter>('all')
   const [selectedMember, setSelectedMember] = useState<string | null>(null)
+  const { locale, t } = useLocale()
 
-  const filtered = filter === 'all' ? TEAM_MEMBERS : TEAM_MEMBERS.filter(m => m.type === filter)
+  const members = getTeamMembers(locale)
+  const projects = getProjectHighlights(locale)
+  const filtered = filter === 'all' ? members : members.filter(m => m.type === filter)
 
   const filters: { id: Filter; label: string; count: number }[] = [
-    { id: 'all', label: 'Tous', count: TEAM_MEMBERS.length },
-    { id: 'human', label: 'Human', count: TEAM_MEMBERS.filter(m => m.type === 'human').length },
-    { id: 'ai', label: 'AI Partner', count: TEAM_MEMBERS.filter(m => m.type === 'ai').length },
-    { id: 'agent', label: 'Agents', count: TEAM_MEMBERS.filter(m => m.type === 'agent').length },
-    { id: 'service', label: 'Services', count: TEAM_MEMBERS.filter(m => m.type === 'service').length },
+    { id: 'all', label: t('team.all'), count: members.length },
+    { id: 'human', label: 'Human', count: members.filter(m => m.type === 'human').length },
+    { id: 'ai', label: 'AI Partner', count: members.filter(m => m.type === 'ai').length },
+    { id: 'agent', label: 'Agents', count: members.filter(m => m.type === 'agent').length },
+    { id: 'service', label: 'Services', count: members.filter(m => m.type === 'service').length },
   ]
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)]">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-heading font-semibold text-cloud-white">L&apos;Equipe MultiPass</h2>
-          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(139,92,246,0.1)] text-neon-purple">
-            {TEAM_MEMBERS.length} membres
+          <h2 className="text-lg font-heading font-semibold text-cloud-white">{t('team.title')}</h2>
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[var(--purple-tint)] text-neon-purple">
+            {members.length} {t('team.members')}
           </span>
         </div>
         <div className="flex items-center gap-4 text-sm text-steel-gray">
           <span>{TEAM_STATS.humans} human</span>
           <span>{TEAM_STATS.aiPartners} AI</span>
-          <span>{TEAM_STATS.agents} agents</span>
+          <span>{TEAM_STATS.agents} {t('common.agents')}</span>
           <span>{TEAM_STATS.services} services</span>
         </div>
       </header>
+
+      {/* Team Manifesto */}
+      <div className="mx-4 mt-3 p-4 rounded-xl border border-[var(--glass-border)] bg-gradient-to-r from-[var(--purple-tint)] via-[var(--cyan-tint-light)] to-[var(--purple-tint)]">
+        <div className="flex items-center justify-center gap-2 flex-wrap mb-2">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--cyan-tint)] border border-electric-cyan/20 text-sm font-bold text-electric-cyan">
+            <User className="w-3.5 h-3.5" /> 1 Human
+          </span>
+          <span className="text-[var(--dim-text)]">+</span>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--purple-tint-strong)] border border-[var(--purple-border)] text-sm font-bold text-neon-purple">
+            <Bot className="w-3.5 h-3.5" /> 1 AI
+          </span>
+          <span className="text-[var(--dim-text)]">+</span>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--amber-tint)] border border-amber-warm/20 text-sm font-bold text-amber-warm">
+            <Users className="w-3.5 h-3.5" /> 13 Agents
+          </span>
+          <span className="text-[var(--dim-text)]">+</span>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--coral-tint)] border border-coral-energy/20 text-sm font-bold text-coral-energy">
+            <Cpu className="w-3.5 h-3.5" /> 28 Subagents
+          </span>
+          <span className="text-[var(--dim-text)]">+</span>
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--green-tint)] border border-success-green/20 text-sm font-bold text-success-green">
+            <Box className="w-3.5 h-3.5" /> 30 Containers
+          </span>
+        </div>
+        <p className="text-center text-base text-steel-gray">
+          <span className="text-lg font-heading font-semibold text-success-green">{t('manifesto.pre')}</span> <span className="text-xl font-heading font-bold text-electric-cyan">{t('manifesto.human')}</span>, <span className="text-lg font-heading font-semibold text-neon-purple">{t('manifesto.ai')}</span>, <span className="text-lg font-heading font-semibold text-amber-warm">{t('manifesto.agents')}</span>.
+        </p>
+      </div>
 
       {/* Filter bar */}
       <div className="flex gap-1 px-4 pt-3 overflow-x-auto">
@@ -46,12 +78,12 @@ export default function TeamPage() {
             onClick={() => setFilter(f.id)}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all shrink-0 ${
               filter === f.id
-                ? 'bg-[rgba(139,92,246,0.15)] text-neon-purple'
-                : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                ? 'bg-[var(--purple-tint-strong)] text-neon-purple'
+                : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
             }`}
           >
             <span>{f.label}</span>
-            <span className="text-sm px-1 py-0.5 rounded bg-[rgba(255,255,255,0.09)]">{f.count}</span>
+            <span className="text-sm px-1 py-0.5 rounded bg-[var(--subtle-bg-3)]">{f.count}</span>
           </button>
         ))}
       </div>
@@ -83,8 +115,8 @@ export default function TeamPage() {
               <button
                 key={member.id}
                 onClick={() => setSelectedMember(prev => prev === member.id ? null : member.id)}
-                className={`text-left glass-card p-4 transition-all hover:bg-[rgba(255,255,255,0.08)] ${
-                  isSelected ? 'ring-1 ring-[rgba(139,92,246,0.4)]' : ''
+                className={`text-left glass-card p-4 transition-all hover:bg-[var(--subtle-bg-3)] ${
+                  isSelected ? 'ring-1 ring-[var(--purple-ring)]' : ''
                 }`}
               >
                 {/* Header */}
@@ -119,13 +151,13 @@ export default function TeamPage() {
                   {member.skills.slice(0, isSelected ? undefined : 3).map(skill => (
                     <span
                       key={skill}
-                      className="text-sm px-2 py-0.5 rounded-md bg-[rgba(255,255,255,0.06)] text-cloud-white"
+                      className="text-sm px-2 py-0.5 rounded-md bg-[var(--subtle-bg-2)] text-cloud-white"
                     >
                       {skill}
                     </span>
                   ))}
                   {!isSelected && member.skills.length > 3 && (
-                    <span className="text-sm px-2 py-0.5 rounded-md bg-[rgba(255,255,255,0.04)] text-steel-gray">
+                    <span className="text-sm px-2 py-0.5 rounded-md bg-[var(--subtle-bg)] text-steel-gray">
                       +{member.skills.length - 3}
                     </span>
                   )}
@@ -133,7 +165,7 @@ export default function TeamPage() {
 
                 {/* Fun fact (expanded) */}
                 {isSelected && member.funFact && (
-                  <div className="mt-3 pt-3 border-t border-[rgba(255,255,255,0.08)] animate-in fade-in duration-200">
+                  <div className="mt-3 pt-3 border-t border-[var(--subtle-bg-3)] animate-in fade-in duration-200">
                     <div className="flex items-start gap-2">
                       <Star className="w-3.5 h-3.5 text-amber-warm mt-0.5 shrink-0" />
                       <span className="text-sm text-amber-warm">{member.funFact}</span>
@@ -149,19 +181,19 @@ export default function TeamPage() {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-neon-purple" />
-            <h3 className="text-base font-heading font-semibold text-cloud-white">Projets de l&apos;Ecosysteme</h3>
+            <h3 className="text-base font-heading font-semibold text-cloud-white">{t('team.projects')}</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {PROJECT_HIGHLIGHTS.map(project => (
+            {projects.map(project => (
               <div key={project.id} className="glass-card p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-base font-heading font-semibold text-cloud-white">{project.name}</span>
                   <span className={`text-sm px-1.5 py-0.5 rounded ${
                     project.status === 'live'
-                      ? 'bg-[rgba(74,222,128,0.1)] text-success-green'
+                      ? 'bg-[var(--green-tint)] text-success-green'
                       : project.status === 'active'
-                      ? 'bg-[rgba(0,212,255,0.1)] text-electric-cyan'
-                      : 'bg-[rgba(255,191,36,0.1)] text-amber-warm'
+                      ? 'bg-[var(--cyan-tint)] text-electric-cyan'
+                      : 'bg-[var(--amber-tint)] text-amber-warm'
                   }`}>
                     {project.status}
                   </span>
@@ -190,8 +222,7 @@ export default function TeamPage() {
             1 Human + 1 AI + 13 Agents + 28 Subagents + 30 Services
           </p>
           <p className="text-base text-steel-gray">
-            Une equipe ou l&apos;humain decide, l&apos;IA orchestre, et les agents executent.
-            Chaque membre a un role precis dans l&apos;ecosysteme MultiPass.
+            {t('team.mission')}
           </p>
         </div>
       </div>

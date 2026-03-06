@@ -39,7 +39,7 @@ export class ErrorBoundary extends Component<Props, State> {
               The architecture visualization encountered an error.
             </p>
             {this.state.error && (
-              <code className="text-xs text-steel-gray/60 bg-[rgba(255,255,255,0.03)] rounded-lg px-3 py-2 max-w-full overflow-x-auto">
+              <code className="text-xs text-steel-gray/60 bg-[var(--subtle-bg)] rounded-lg px-3 py-2 max-w-full overflow-x-auto">
                 {this.state.error}
               </code>
             )}

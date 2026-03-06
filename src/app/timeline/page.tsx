@@ -5,25 +5,30 @@ import { Clock, TrendingUp, ChevronDown, ChevronUp, ArrowRight } from 'lucide-re
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/studio/fade-in'
 import { AnimatedCounter } from '@/components/studio/animated-counter'
 import {
-  TIMELINE_MILESTONES, CATEGORY_CONFIG, EVOLUTION_SUMMARY,
+  CATEGORY_CONFIG, getTimelineMilestones, getEvolutionSummary,
 } from '@/lib/timeline-data'
+import { useLocale } from '@/lib/i18n'
 
 type Filter = 'all' | 'infra' | 'app' | 'ai' | 'security' | 'knowledge' | 'monitoring'
 
 export default function TimelinePage() {
   const [filter, setFilter] = useState<Filter>('all')
   const [expandedId, setExpandedId] = useState<string | null>(null)
+  const { locale, t } = useLocale()
+
+  const milestones = getTimelineMilestones(locale)
+  const summary = getEvolutionSummary(locale)
 
   const filtered = filter === 'all'
-    ? TIMELINE_MILESTONES
-    : TIMELINE_MILESTONES.filter(m => m.category === filter)
+    ? milestones
+    : milestones.filter(m => m.category === filter)
 
   const filters: { id: Filter; label: string; count: number; color: string }[] = [
-    { id: 'all', label: 'Tous', count: TIMELINE_MILESTONES.length, color: '#B0BEC5' },
+    { id: 'all', label: t('common.all'), count: milestones.length, color: '#B0BEC5' },
     ...Object.entries(CATEGORY_CONFIG).map(([id, cfg]) => ({
       id: id as Filter,
       label: cfg.label,
-      count: TIMELINE_MILESTONES.filter(m => m.category === id).length,
+      count: milestones.filter(m => m.category === id).length,
       color: cfg.color,
     })),
   ]
@@ -31,16 +36,16 @@ export default function TimelinePage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)]">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-heading font-semibold text-cloud-white">How We Built This</h2>
-          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(139,92,246,0.1)] text-neon-purple">
-            {EVOLUTION_SUMMARY.duration}
+          <h2 className="text-lg font-heading font-semibold text-cloud-white">{t('timeline.title')}</h2>
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[var(--purple-tint)] text-neon-purple">
+            {summary.duration}
           </span>
         </div>
         <div className="flex items-center gap-4 text-sm text-steel-gray">
-          <span>{TIMELINE_MILESTONES.length} milestones</span>
-          <span>{EVOLUTION_SUMMARY.team}</span>
+          <span>{milestones.length} {t('timeline.milestones')}</span>
+          <span>{summary.team}</span>
         </div>
       </header>
 
@@ -53,12 +58,12 @@ export default function TimelinePage() {
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all shrink-0 ${
               filter === f.id
                 ? 'text-cloud-white'
-                : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
             }`}
             style={filter === f.id ? { backgroundColor: `${f.color}20`, color: f.color } : {}}
           >
             <span>{f.label}</span>
-            <span className="text-sm px-1 py-0.5 rounded bg-[rgba(255,255,255,0.09)]">{f.count}</span>
+            <span className="text-sm px-1 py-0.5 rounded bg-[var(--subtle-bg-3)]">{f.count}</span>
           </button>
         ))}
       </div>
@@ -67,14 +72,13 @@ export default function TimelinePage() {
 
         {/* Hero summary */}
         <FadeIn>
-          <div className="glass-card p-5 border border-[rgba(139,92,246,0.15)]">
+          <div className="glass-card p-5 border border-[var(--purple-tint-strong)]">
             <div className="flex items-center gap-2 mb-3">
               <TrendingUp className="w-5 h-5 text-neon-purple" />
-              <h3 className="text-lg font-heading font-bold text-cloud-white">De Zero a Ecosysteme Complet</h3>
+              <h3 className="text-lg font-heading font-bold text-cloud-white">{t('timeline.hero.title')}</h3>
             </div>
             <p className="text-sm text-steel-gray mb-4">
-              En ~3 mois, 1 humain et 1 IA ont construit un ecosysteme de production complet: infrastructure,
-              agents autonomes, knowledge base, securite enterprise, monitoring 24/7. Voici chaque etape.
+              {t('timeline.hero.desc')}
             </p>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
               {[
@@ -83,9 +87,9 @@ export default function TimelinePage() {
                 { value: 41, label: 'Agents', color: '#F472B6' },
                 { value: 663, label: 'Tests', color: '#4ADE80' },
                 { value: 575, label: 'Notes', color: '#FBBF24' },
-                { value: 31, label: 'Controles', color: '#4ADE80' },
+                { value: 31, label: t('common.controls'), color: '#4ADE80' },
               ].map(s => (
-                <div key={s.label} className="text-center p-2 rounded-lg bg-[rgba(255,255,255,0.04)]">
+                <div key={s.label} className="text-center p-2 rounded-lg bg-[var(--subtle-bg)]">
                   <AnimatedCounter value={s.value} className="text-xl font-heading font-bold" />
                   <p className="text-[11px] text-steel-gray">{s.label}</p>
                 </div>
@@ -97,7 +101,7 @@ export default function TimelinePage() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-[rgba(255,255,255,0.08)]" />
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-[var(--subtle-bg-3)]" />
 
           <StaggerContainer className="space-y-3" staggerDelay={0.07}>
             {filtered.map((milestone, index) => {
@@ -116,11 +120,11 @@ export default function TimelinePage() {
                       className="absolute left-4 top-5 w-5 h-5 rounded-full flex items-center justify-center z-10 text-xs ring-4 ring-deep-space"
                       style={{ backgroundColor: catConfig.color }}
                     >
-                      {isLast ? '★' : ''}
+                      {isLast ? '\u2605' : ''}
                     </div>
 
-                    <div className={`glass-card p-4 transition-all hover:bg-[rgba(255,255,255,0.08)] ${
-                      isLast ? 'ring-1 ring-[rgba(139,92,246,0.3)]' : ''
+                    <div className={`glass-card p-4 transition-all hover:bg-[var(--subtle-bg-3)] ${
+                      isLast ? 'ring-1 ring-[var(--purple-ring)]' : ''
                     }`}>
                       {/* Date + category */}
                       <div className="flex items-center gap-2 mb-2">
@@ -155,10 +159,10 @@ export default function TimelinePage() {
 
                       {/* Metrics (expanded) */}
                       {isExpanded && milestone.metrics && (
-                        <div className="mt-3 pt-3 border-t border-[rgba(255,255,255,0.08)] animate-in fade-in duration-200">
+                        <div className="mt-3 pt-3 border-t border-[var(--subtle-bg-3)] animate-in fade-in duration-200">
                           <div className="grid grid-cols-3 gap-3">
                             {milestone.metrics.map(m => (
-                              <div key={m.label} className="p-2.5 rounded-lg bg-[rgba(255,255,255,0.04)] text-center">
+                              <div key={m.label} className="p-2.5 rounded-lg bg-[var(--subtle-bg)] text-center">
                                 <p className="text-[11px] text-steel-gray mb-1">{m.label}</p>
                                 {m.before ? (
                                   <div className="flex items-center justify-center gap-1.5">
@@ -184,12 +188,12 @@ export default function TimelinePage() {
 
         {/* Bottom CTA */}
         <FadeIn delay={0.2}>
-          <div className="glass-card p-5 text-center border border-[rgba(139,92,246,0.15)]">
+          <div className="glass-card p-5 text-center border border-[var(--purple-tint-strong)]">
             <p className="text-lg font-heading font-semibold text-cloud-white mb-1">
-              {EVOLUTION_SUMMARY.fromZero}
+              {summary.fromZero}
             </p>
             <p className="text-sm text-steel-gray">
-              {EVOLUTION_SUMMARY.team} — {EVOLUTION_SUMMARY.duration} — {EVOLUTION_SUMMARY.totalComponents} composants — {EVOLUTION_SUMMARY.totalTests} tests — {EVOLUTION_SUMMARY.totalAgents} agents
+              {summary.team} — {summary.duration} — {summary.totalComponents} {t('common.components')} — {summary.totalTests} tests — {summary.totalAgents} {t('common.agents')}
             </p>
           </div>
         </FadeIn>

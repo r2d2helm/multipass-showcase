@@ -35,42 +35,42 @@ const StatItem = ({
 
 export function StatsBar({ stats }: StatsBarProps) {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-1 rounded-xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] px-2 py-1 backdrop-blur-xl">
+    <div className="flex flex-wrap items-center justify-center gap-1 rounded-xl border border-[var(--glass-border)] bg-[var(--subtle-bg)] px-2 py-1 backdrop-blur-xl">
       <StatItem
         icon={Server}
         label="Services"
         value={`${stats.healthyServices}/${stats.totalServices}`}
         color="#4ADE80"
       />
-      <div className="h-4 w-px bg-[rgba(255,255,255,0.1)] hidden sm:block" />
+      <div className="h-4 w-px bg-[var(--glass-border)] hidden sm:block" />
       <StatItem
         icon={Activity}
         label="Req/min"
         value={formatNumber(stats.totalRequests)}
         color="#00D4FF"
       />
-      <div className="h-4 w-px bg-[rgba(255,255,255,0.1)] hidden sm:block" />
+      <div className="h-4 w-px bg-[var(--glass-border)] hidden sm:block" />
       <StatItem
         icon={Gauge}
         label="Latency"
         value={`${stats.avgLatency}ms`}
         color="#8B5CF6"
       />
-      <div className="h-4 w-px bg-[rgba(255,255,255,0.1)] hidden sm:block" />
+      <div className="h-4 w-px bg-[var(--glass-border)] hidden sm:block" />
       <StatItem
         icon={Cpu}
         label="CPU"
         value={`${stats.avgCpu}%`}
         color="#FBBF24"
       />
-      <div className="h-4 w-px bg-[rgba(255,255,255,0.1)] hidden sm:block" />
+      <div className="h-4 w-px bg-[var(--glass-border)] hidden sm:block" />
       <StatItem
         icon={MemoryStick}
         label="RAM"
         value={`${stats.avgMemory}%`}
         color="#FF6B6B"
       />
-      <div className="h-4 w-px bg-[rgba(255,255,255,0.1)] hidden sm:block" />
+      <div className="h-4 w-px bg-[var(--glass-border)] hidden sm:block" />
       <StatItem
         icon={Clock}
         label="Uptime"

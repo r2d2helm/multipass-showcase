@@ -19,8 +19,8 @@ export function VMCard({ vm, selected, onClick }: VMCardProps) {
       onClick={onClick}
       className={`glass-card p-4 text-left transition-all duration-200 w-full ${
         selected
-          ? 'ring-1 ring-electric-cyan bg-[rgba(0,212,255,0.08)]'
-          : 'hover:bg-[rgba(255,255,255,0.09)]'
+          ? 'ring-1 ring-electric-cyan bg-[var(--cyan-tint)]'
+          : 'hover:bg-[var(--subtle-bg-3)]'
       }`}
     >
       <div className="flex items-start justify-between mb-3">
@@ -57,7 +57,7 @@ export function VMCard({ vm, selected, onClick }: VMCardProps) {
             <span>Disk usage</span>
             <span>{vm.diskUsage}%</span>
           </div>
-          <div className="h-1 bg-[rgba(255,255,255,0.09)] rounded-full overflow-hidden">
+          <div className="h-1 bg-[var(--subtle-bg-3)] rounded-full overflow-hidden">
             <div
               className={`h-full rounded-full transition-all ${
                 vm.diskUsage > 85 ? 'bg-coral-energy' : vm.diskUsage > 70 ? 'bg-amber-warm' : 'bg-success-green'
@@ -70,12 +70,12 @@ export function VMCard({ vm, selected, onClick }: VMCardProps) {
 
       <div className="mt-3 flex flex-wrap gap-1">
         {vm.services.slice(0, 3).map((s) => (
-          <span key={s} className="text-sm px-1.5 py-0.5 rounded bg-[rgba(255,255,255,0.09)] text-steel-gray">
+          <span key={s} className="text-sm px-1.5 py-0.5 rounded bg-[var(--subtle-bg-3)] text-steel-gray">
             {s}
           </span>
         ))}
         {vm.services.length > 3 && (
-          <span className="text-sm px-1.5 py-0.5 rounded bg-[rgba(255,255,255,0.09)] text-steel-gray">
+          <span className="text-sm px-1.5 py-0.5 rounded bg-[var(--subtle-bg-3)] text-steel-gray">
             +{vm.services.length - 3}
           </span>
         )}

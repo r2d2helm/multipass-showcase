@@ -4,11 +4,11 @@ import { Clock, Shield, Database, RefreshCw, Wrench, TestTube } from 'lucide-rea
 import type { CronJob } from '@/lib/infra-data'
 
 const CATEGORY_CONFIG = {
-  monitoring: { icon: Shield, color: 'text-electric-cyan', bg: 'bg-[rgba(0,212,255,0.1)]' },
-  backup: { icon: Database, color: 'text-neon-purple', bg: 'bg-[rgba(139,92,246,0.1)]' },
-  sync: { icon: RefreshCw, color: 'text-success-green', bg: 'bg-[rgba(74,222,128,0.1)]' },
-  maintenance: { icon: Wrench, color: 'text-amber-warm', bg: 'bg-[rgba(251,191,36,0.1)]' },
-  test: { icon: TestTube, color: 'text-coral-energy', bg: 'bg-[rgba(255,107,107,0.1)]' },
+  monitoring: { icon: Shield, color: 'text-electric-cyan', bg: 'bg-[var(--cyan-tint)]' },
+  backup: { icon: Database, color: 'text-neon-purple', bg: 'bg-[var(--purple-tint)]' },
+  sync: { icon: RefreshCw, color: 'text-success-green', bg: 'bg-[var(--green-tint)]' },
+  maintenance: { icon: Wrench, color: 'text-amber-warm', bg: 'bg-[var(--amber-tint)]' },
+  test: { icon: TestTube, color: 'text-coral-energy', bg: 'bg-[var(--coral-tint)]' },
 }
 
 function parseScheduleToHour(schedule: string): number | null {
@@ -39,7 +39,7 @@ export function CronTimeline({ jobs }: CronTimelineProps) {
             <span key={h}>{h.toString().padStart(2, '0')}h</span>
           ))}
         </div>
-        <div className="h-8 bg-[rgba(255,255,255,0.09)] rounded-lg relative overflow-hidden">
+        <div className="h-8 bg-[var(--subtle-bg-3)] rounded-lg relative overflow-hidden">
           {jobs.map((job, i) => {
             const hour = parseScheduleToHour(job.schedule)
             if (hour === null) return null
@@ -85,7 +85,7 @@ export function CronTimeline({ jobs }: CronTimelineProps) {
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-[rgba(255,255,255,0.06)]">
+      <div className="flex flex-wrap gap-3 mt-4 pt-3 border-t border-[var(--subtle-bg-2)]">
         {Object.entries(CATEGORY_CONFIG).map(([key, config]) => {
           const Icon = config.icon
           return (

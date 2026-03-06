@@ -24,10 +24,10 @@ export default function WarehousePage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)]">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-heading font-semibold text-cloud-white">Warehouse</h2>
-          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(74,222,128,0.1)] text-success-green">
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[var(--green-tint)] text-success-green">
             {WAREHOUSE_STATS.totalFiches} fiches
           </span>
         </div>
@@ -51,14 +51,14 @@ export default function WarehousePage() {
               onClick={() => setView(v.id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-base transition-all ${
                 view === v.id
-                  ? 'bg-[rgba(74,222,128,0.15)] text-success-green'
-                  : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                  ? 'bg-[var(--green-tint)] text-success-green'
+                  : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
               <span>{v.label}</span>
               {v.count && (
-                <span className="text-sm px-1 py-0.5 rounded bg-[rgba(255,255,255,0.09)]">{v.count}</span>
+                <span className="text-sm px-1 py-0.5 rounded bg-[var(--subtle-bg-3)]">{v.count}</span>
               )}
             </button>
           )
@@ -80,17 +80,17 @@ export default function WarehousePage() {
                 {WAREHOUSE_AGENTS.map((agent, i) => (
                   <div key={agent.id} className="flex items-start gap-3">
                     <div className="flex flex-col items-center">
-                      <div className="w-8 h-8 rounded-lg bg-[rgba(74,222,128,0.1)] flex items-center justify-center text-success-green text-base font-bold">
+                      <div className="w-8 h-8 rounded-lg bg-[var(--green-tint)] flex items-center justify-center text-success-green text-base font-bold">
                         {agent.step}
                       </div>
                       {i < WAREHOUSE_AGENTS.length - 1 && (
-                        <div className="w-px h-6 bg-[rgba(74,222,128,0.2)] my-1" />
+                        <div className="w-px h-6 bg-[var(--green-tint)] my-1" />
                       )}
                     </div>
-                    <div className="flex-1 p-3 rounded-lg bg-[rgba(255,255,255,0.05)]">
+                    <div className="flex-1 p-3 rounded-lg bg-[var(--subtle-bg-2)]">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-base font-medium text-cloud-white">{agent.name}</span>
-                        <span className="text-sm px-1.5 py-0.5 rounded bg-[rgba(74,222,128,0.1)] text-success-green">
+                        <span className="text-sm px-1.5 py-0.5 rounded bg-[var(--green-tint)] text-success-green">
                           {agent.role}
                         </span>
                         <ArrowRight className="w-3 h-3 text-steel-gray/50 ml-auto" />
@@ -134,8 +134,8 @@ export default function WarehousePage() {
                 onClick={() => setSelectedCategory(null)}
                 className={`text-sm px-2 py-1 rounded-lg transition-all ${
                   !selectedCategory
-                    ? 'bg-[rgba(255,255,255,0.1)] text-cloud-white'
-                    : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                    ? 'bg-[var(--glass-border)] text-cloud-white'
+                    : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
                 }`}
               >
                 All ({WAREHOUSE_FICHES.length})
@@ -148,8 +148,8 @@ export default function WarehousePage() {
                     onClick={() => setSelectedCategory(prev => prev === cat ? null : cat)}
                     className={`flex items-center gap-1 text-sm px-2 py-1 rounded-lg transition-all ${
                       selectedCategory === cat
-                        ? 'bg-[rgba(255,255,255,0.1)] text-cloud-white'
-                        : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                        ? 'bg-[var(--glass-border)] text-cloud-white'
+                        : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
                     }`}
                   >
                     <div

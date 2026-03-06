@@ -40,7 +40,7 @@ function StepCard({ step, index }: { step: FlowStep; index: number }) {
       {/* Card */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex-1 mb-2 text-left glass-card p-3 transition-all hover:bg-[rgba(255,255,255,0.08)]"
+        className="flex-1 mb-2 text-left glass-card p-3 transition-all hover:bg-[var(--subtle-bg-3)]"
       >
         {/* Header row */}
         <div className="flex items-center gap-2 flex-wrap mb-1.5">
@@ -52,7 +52,7 @@ function StepCard({ step, index }: { step: FlowStep; index: number }) {
             </>
           )}
           {step.protocol && (
-            <span className="text-sm px-1.5 py-0.5 rounded bg-[rgba(255,255,255,0.07)] text-steel-gray ml-auto">
+            <span className="text-sm px-1.5 py-0.5 rounded bg-[var(--subtle-bg-3)] text-steel-gray ml-auto">
               {step.protocol}
             </span>
           )}
@@ -69,13 +69,13 @@ function StepCard({ step, index }: { step: FlowStep; index: number }) {
 
         {/* Expanded details */}
         {expanded && (
-          <div className="mt-3 pt-2 border-t border-[rgba(255,255,255,0.08)] space-y-2 animate-in fade-in duration-200">
+          <div className="mt-3 pt-2 border-t border-[var(--subtle-bg-3)] space-y-2 animate-in fade-in duration-200">
             {step.agents && step.agents.length > 0 && (
               <div className="flex items-start gap-2">
                 <Users className="w-3.5 h-3.5 text-neon-purple mt-0.5 shrink-0" />
                 <div className="flex flex-wrap gap-1.5">
                   {step.agents.map(a => (
-                    <span key={a} className="text-sm px-2 py-0.5 rounded-md bg-[rgba(139,92,246,0.12)] text-neon-purple">
+                    <span key={a} className="text-sm px-2 py-0.5 rounded-md bg-[var(--purple-tint)] text-neon-purple">
                       {a}
                     </span>
                   ))}
@@ -87,7 +87,7 @@ function StepCard({ step, index }: { step: FlowStep; index: number }) {
                 <Server className="w-3.5 h-3.5 text-electric-cyan mt-0.5 shrink-0" />
                 <div className="flex flex-wrap gap-1.5">
                   {step.services.map(s => (
-                    <span key={s} className="text-sm px-2 py-0.5 rounded-md bg-[rgba(0,212,255,0.12)] text-electric-cyan">
+                    <span key={s} className="text-sm px-2 py-0.5 rounded-md bg-[var(--cyan-tint)] text-electric-cyan">
                       {s}
                     </span>
                   ))}
@@ -114,10 +114,10 @@ export default function FlowsPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)]">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-heading font-semibold text-cloud-white">Interaction Flows</h2>
-          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(139,92,246,0.1)] text-neon-purple">
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[var(--purple-tint)] text-neon-purple">
             {FLOW_SCENARIOS.length} scenarios
           </span>
         </div>
@@ -135,8 +135,8 @@ export default function FlowsPage() {
             onClick={() => setActiveScenario(s.id)}
             className={`shrink-0 px-3 py-1.5 rounded-lg text-sm transition-all ${
               activeScenario === s.id
-                ? 'bg-[rgba(139,92,246,0.15)] text-neon-purple'
-                : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                ? 'bg-[var(--purple-tint-strong)] text-neon-purple'
+                : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
             }`}
           >
             {s.name}
@@ -156,7 +156,7 @@ export default function FlowsPage() {
               const cfg = ACTOR_CONFIG[a]
               const icon = cfg.type === 'human' ? '👤' : cfg.type === 'external' ? '🌐' : '🖥️'
               return (
-                <div key={a} className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-[rgba(255,255,255,0.04)]">
+                <div key={a} className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-[var(--subtle-bg)]">
                   <span className="text-sm">{icon}</span>
                   <span className="text-sm font-medium" style={{ color: cfg.color }}>{cfg.name}</span>
                 </div>

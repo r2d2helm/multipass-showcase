@@ -93,7 +93,7 @@ export function ArchitectureGraph({ data }: ArchitectureGraphProps) {
           variant={BackgroundVariant.Dots}
           gap={24}
           size={1}
-          color="rgba(255, 255, 255, 0.05)"
+          color="var(--subtle-bg-2)"
         />
         <Controls showInteractive={false} />
         <MiniMap
@@ -101,7 +101,7 @@ export function ArchitectureGraph({ data }: ArchitectureGraphProps) {
             const metrics = (node.data as { metrics: ServiceMetrics }).metrics
             return getCategoryColor(metrics.category)
           }}
-          maskColor="rgba(10, 22, 40, 0.8)"
+          maskColor="var(--overlay-bg)"
           style={{ borderRadius: '0.75rem' }}
         />
       </ReactFlow>

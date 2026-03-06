@@ -28,8 +28,8 @@ function ServiceNodeComponent({ data }: NodeProps) {
           ${selected ? 'ring-2 ring-electric-cyan/50 scale-105' : ''}
         `}
         style={{
-          background: 'rgba(255, 255, 255, 0.03)',
-          border: `1px solid ${selected ? categoryColor + '40' : 'rgba(255, 255, 255, 0.08)'}`,
+          background: 'var(--subtle-bg)',
+          border: `1px solid ${selected ? categoryColor + '40' : 'var(--subtle-bg-3)'}`,
           backdropFilter: 'blur(20px)',
           WebkitBackdropFilter: 'blur(20px)',
           minWidth: 160,

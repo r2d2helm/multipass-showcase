@@ -28,10 +28,10 @@ export default function SecurityPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)]">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-heading font-semibold text-cloud-white">Security</h2>
-          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(74,222,128,0.1)] text-success-green">
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[var(--green-tint)] text-success-green">
             {passChecks}/{HARDENING_CHECKS.length} checks pass
           </span>
         </div>
@@ -52,8 +52,8 @@ export default function SecurityPage() {
               onClick={() => setTab(t.id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm transition-all shrink-0 ${
                 tab === t.id
-                  ? 'bg-[rgba(74,222,128,0.15)] text-success-green'
-                  : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                  ? 'bg-[var(--green-tint)] text-success-green'
+                  : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -92,7 +92,7 @@ export default function SecurityPage() {
               <button
                 key={layer.id}
                 onClick={() => setExpandedLayer(prev => prev === layer.id ? null : layer.id)}
-                className="w-full text-left glass-card p-4 transition-all hover:bg-[rgba(255,255,255,0.08)]"
+                className="w-full text-left glass-card p-4 transition-all hover:bg-[var(--subtle-bg-3)]"
               >
                 <div className="flex items-center gap-3 mb-1">
                   <span className="text-xl">{layer.icon}</span>
@@ -107,14 +107,14 @@ export default function SecurityPage() {
                 </div>
 
                 {expandedLayer === layer.id && (
-                  <div className="mt-3 pt-3 border-t border-[rgba(255,255,255,0.08)] space-y-2 animate-in fade-in duration-200">
+                  <div className="mt-3 pt-3 border-t border-[var(--subtle-bg-3)] space-y-2 animate-in fade-in duration-200">
                     {layer.controls.map(ctrl => (
-                      <div key={ctrl.id} className="p-3 rounded-lg bg-[rgba(255,255,255,0.04)]">
+                      <div key={ctrl.id} className="p-3 rounded-lg bg-[var(--subtle-bg)]">
                         <div className="flex items-center gap-2 mb-1">
                           <CheckCircle className={`w-3.5 h-3.5 shrink-0 ${ctrl.status === 'enforced' ? 'text-success-green' : 'text-electric-cyan'}`} />
                           <span className="text-sm font-medium text-cloud-white">{ctrl.name}</span>
                           <span className={`text-sm px-1.5 py-0.5 rounded ${
-                            ctrl.status === 'enforced' ? 'bg-[rgba(74,222,128,0.1)] text-success-green' : 'bg-[rgba(0,212,255,0.1)] text-electric-cyan'
+                            ctrl.status === 'enforced' ? 'bg-[var(--green-tint)] text-success-green' : 'bg-[var(--cyan-tint)] text-electric-cyan'
                           }`}>
                             {ctrl.status}
                           </span>
@@ -155,7 +155,7 @@ export default function SecurityPage() {
                   <p className="text-sm text-steel-gray mb-1">Hosts:</p>
                   <div className="flex flex-wrap gap-1.5">
                     {zone.hosts.map(h => (
-                      <span key={h} className="text-sm px-2 py-0.5 rounded-md bg-[rgba(0,212,255,0.1)] text-electric-cyan">{h}</span>
+                      <span key={h} className="text-sm px-2 py-0.5 rounded-md bg-[var(--cyan-tint)] text-electric-cyan">{h}</span>
                     ))}
                   </div>
                 </div>
@@ -199,7 +199,7 @@ export default function SecurityPage() {
                   <p className="text-sm text-steel-gray">Checks Pass</p>
                 </div>
                 <div className="flex-1">
-                  <div className="h-3 bg-[rgba(255,255,255,0.06)] rounded-full overflow-hidden">
+                  <div className="h-3 bg-[var(--subtle-bg-2)] rounded-full overflow-hidden">
                     <div
                       className="h-full bg-success-green rounded-full transition-all"
                       style={{ width: `${(passChecks / HARDENING_CHECKS.length) * 100}%` }}
@@ -225,7 +225,7 @@ export default function SecurityPage() {
                   </div>
                   <div className="space-y-1.5">
                     {checks.map(check => (
-                      <div key={check.id} className="flex items-center gap-3 py-2 px-3 rounded-lg bg-[rgba(255,255,255,0.04)]">
+                      <div key={check.id} className="flex items-center gap-3 py-2 px-3 rounded-lg bg-[var(--subtle-bg)]">
                         <CheckCircle className={`w-3.5 h-3.5 shrink-0 ${
                           check.status === 'pass' ? 'text-success-green' : check.status === 'warn' ? 'text-amber-warm' : 'text-coral-energy'
                         }`} />
@@ -270,7 +270,7 @@ export default function SecurityPage() {
               <button
                 key={threat.id}
                 onClick={() => setExpandedThreat(prev => prev === threat.id ? null : threat.id)}
-                className="w-full text-left glass-card p-4 transition-all hover:bg-[rgba(255,255,255,0.08)]"
+                className="w-full text-left glass-card p-4 transition-all hover:bg-[var(--subtle-bg-3)]"
               >
                 <div className="flex items-center gap-3 mb-1">
                   <div
@@ -290,7 +290,7 @@ export default function SecurityPage() {
                 <p className="text-sm text-steel-gray ml-5">Vecteur: {threat.vector}</p>
 
                 {expandedThreat === threat.id && (
-                  <div className="mt-3 pt-3 border-t border-[rgba(255,255,255,0.08)] ml-5 space-y-1.5 animate-in fade-in duration-200">
+                  <div className="mt-3 pt-3 border-t border-[var(--subtle-bg-3)] ml-5 space-y-1.5 animate-in fade-in duration-200">
                     <p className="text-sm text-electric-cyan mb-1">Mitigations:</p>
                     {threat.mitigation.map((m, i) => (
                       <div key={i} className="flex items-start gap-2">

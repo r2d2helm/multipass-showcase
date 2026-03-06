@@ -23,10 +23,10 @@ export default function MonitoringPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-[rgba(255,255,255,0.06)]">
+      <header className="flex items-center justify-between px-4 py-3 border-b border-[var(--subtle-bg-2)]">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-heading font-semibold text-cloud-white">Monitoring</h2>
-          <span className="text-sm px-2 py-0.5 rounded-full bg-[rgba(74,222,128,0.1)] text-success-green">
+          <span className="text-sm px-2 py-0.5 rounded-full bg-[var(--green-tint)] text-success-green">
             All Systems Operational
           </span>
         </div>
@@ -52,13 +52,13 @@ export default function MonitoringPage() {
               onClick={() => setView(v.id)}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-base transition-all ${
                 view === v.id
-                  ? 'bg-[rgba(74,222,128,0.15)] text-success-green'
-                  : 'text-steel-gray hover:bg-[rgba(255,255,255,0.04)]'
+                  ? 'bg-[var(--green-tint)] text-success-green'
+                  : 'text-steel-gray hover:bg-[var(--subtle-bg)]'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
               <span>{v.label}</span>
-              <span className="text-sm px-1 py-0.5 rounded bg-[rgba(255,255,255,0.09)]">{v.count}</span>
+              <span className="text-sm px-1 py-0.5 rounded bg-[var(--subtle-bg-3)]">{v.count}</span>
             </button>
           )
         })}
@@ -84,7 +84,7 @@ export default function MonitoringPage() {
             <div className="glass-card p-4">
               <div className="space-y-1.5">
                 {MONITOR_CHECKS.map(check => (
-                  <div key={check.id} className="flex items-center gap-3 py-1.5 px-3 rounded-lg bg-[rgba(255,255,255,0.05)]">
+                  <div key={check.id} className="flex items-center gap-3 py-1.5 px-3 rounded-lg bg-[var(--subtle-bg-2)]">
                     {statusIcon(check.status)}
                     <div
                       className="w-1.5 h-1.5 rounded-full shrink-0"
@@ -116,11 +116,11 @@ export default function MonitoringPage() {
             </div>
             <div className="space-y-2">
               {ALERT_RULES.map(rule => (
-                <div key={rule.id} className="p-3 rounded-lg bg-[rgba(255,255,255,0.05)]">
+                <div key={rule.id} className="p-3 rounded-lg bg-[var(--subtle-bg-2)]">
                   <div className="flex items-center gap-2 mb-1">
                     <AlertTriangle className="w-3 h-3 text-amber-warm" />
                     <span className="text-base text-cloud-white font-medium">{rule.name}</span>
-                    <span className="text-sm px-1.5 py-0.5 rounded bg-[rgba(251,191,36,0.1)] text-amber-warm ml-auto">
+                    <span className="text-sm px-1.5 py-0.5 rounded bg-[var(--amber-tint)] text-amber-warm ml-auto">
                       {rule.channel}
                     </span>
                   </div>
@@ -172,7 +172,7 @@ export default function MonitoringPage() {
               </div>
               <div className="space-y-2">
                 {BACKUP_JOBS.map(job => (
-                  <div key={job.id} className="flex items-center gap-3 py-2 px-3 rounded-lg bg-[rgba(255,255,255,0.05)]">
+                  <div key={job.id} className="flex items-center gap-3 py-2 px-3 rounded-lg bg-[var(--subtle-bg-2)]">
                     {statusIcon(job.status)}
                     <span className="text-base text-cloud-white w-48 shrink-0">{job.name}</span>
                     <code className="text-sm text-steel-gray font-mono w-24 shrink-0">{job.schedule}</code>
