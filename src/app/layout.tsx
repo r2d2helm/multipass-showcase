@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, DM_Sans } from 'next/font/google'
+import { Sidebar } from '@/components/studio/sidebar'
 import './globals.css'
 
 const spaceGrotesk = Space_Grotesk({
@@ -15,20 +16,20 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'MultiPass Architecture | Live Infrastructure Showcase',
-  description: 'Real-time visualization of the MultiPass Agency microservices architecture. 15+ Docker services orchestrated on Proxmox.',
+  title: 'MultiPass Studio | Interactive Infrastructure Showcase',
+  description: 'Interactive visualization of the MultiPass Agency ecosystem — infrastructure, services, AI agents, monitoring.',
   metadataBase: new URL('https://showcase.multipass.agency'),
   openGraph: {
-    title: 'MultiPass Architecture Showcase',
-    description: 'Live infrastructure visualization — 15 microservices, real-time metrics.',
+    title: 'MultiPass Studio',
+    description: 'Interactive ecosystem showcase — infrastructure, services, AI agents, monitoring.',
     type: 'website',
     url: 'https://showcase.multipass.agency',
     siteName: 'MultiPass Agency',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MultiPass Architecture Showcase',
-    description: 'Live infrastructure visualization — 15 microservices, real-time metrics.',
+    title: 'MultiPass Studio',
+    description: 'Interactive ecosystem showcase — infrastructure, services, AI agents, monitoring.',
   },
   robots: {
     index: true,
@@ -44,7 +45,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
-        {children}
+        <div className="flex h-screen w-screen overflow-hidden">
+          <Sidebar />
+          <main className="flex-1 overflow-hidden">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )
