@@ -21,6 +21,7 @@ import {
   BarChart3,
   Radio,
   GraduationCap,
+  Network,
   Sun,
   Moon,
 } from 'lucide-react'
@@ -46,6 +47,7 @@ const NAV_ITEMS = [
   { href: '/charts', labelKey: 'nav.charts', icon: BarChart3, descKey: 'nav.charts.desc' },
   { href: '/remote', labelKey: 'nav.remote', icon: Radio, descKey: 'nav.remote.desc' },
   { href: '/learn', labelKey: 'nav.learn', icon: GraduationCap, descKey: 'nav.learn.desc' },
+  { href: '/ecosystem', labelKey: 'nav.ecosystem', icon: Network, descKey: 'nav.ecosystem.desc' },
 ]
 
 const LOCALES: Locale[] = ['fr', 'en', 'nl']

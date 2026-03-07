@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Server, Layers, Brain, Workflow, ShieldCheck, Lock, ShieldAlert, BookOpen, Users, Crown, Clock, Rocket, Briefcase, Mic, HardDrive, BarChart3, Radio, GraduationCap, ArrowRight, User, Bot, Cpu, Box } from 'lucide-react'
+import { Server, Layers, Brain, Workflow, ShieldCheck, Lock, ShieldAlert, BookOpen, Users, Crown, Clock, Rocket, Briefcase, Mic, HardDrive, BarChart3, Radio, GraduationCap, Network, ArrowRight, User, Bot, Cpu, Box } from 'lucide-react'
 import { FadeIn, StaggerContainer, StaggerItem } from '@/components/studio/fade-in'
 import { AnimatedCounter } from '@/components/studio/animated-counter'
 import { useLocale } from '@/lib/i18n'
@@ -36,6 +36,7 @@ const PAGES = [
   { href: '/charts', labelKey: 'nav.charts', icon: BarChart3, color: '#4ADE80', descKey: 'landing.desc.charts' },
   { href: '/remote', labelKey: 'nav.remote', icon: Radio, color: '#FF6B6B', descKey: 'landing.desc.remote' },
   { href: '/learn', labelKey: 'nav.learn', icon: GraduationCap, color: '#FBBF24', descKey: 'landing.desc.learn' },
+  { href: '/ecosystem', labelKey: 'nav.ecosystem', icon: Network, color: '#F472B6', descKey: 'landing.desc.ecosystem' },
 ]
 
 export default function HomePage() {
